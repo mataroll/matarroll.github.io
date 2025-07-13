@@ -193,9 +193,206 @@
             text-decoration: none;
         }
 
+        /* CV Section */
+        .cv-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+            min-height: 100vh;
+        }
 
+        .cv-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: flex;
+            min-height: 90vh;
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-        /* Contact Section */
+        .cv-sidebar {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            width: 350px;
+            padding: 40px 30px;
+            flex-shrink: 0;
+        }
+
+        .cv-main {
+            flex: 1;
+            padding: 40px;
+            background: white;
+        }
+
+        .cv-header-name {
+            font-size: 2.2em;
+            font-weight: 300;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        .cv-header-title {
+            font-size: 1.1em;
+            color: #bdc3c7;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .cv-sidebar-section {
+            margin-bottom: 35px;
+        }
+
+        .cv-sidebar-section h3 {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: white;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #ecf0f1;
+            font-size: 0.9em;
+        }
+
+        .contact-icon {
+            width: 20px;
+            margin-right: 15px;
+            font-size: 1.1em;
+        }
+
+        .cv-sidebar ul {
+            list-style: none;
+        }
+
+        .cv-sidebar ul li {
+            margin-bottom: 12px;
+            color: #ecf0f1;
+            position: relative;
+            padding-left: 15px;
+            font-size: 0.9em;
+        }
+
+        .cv-sidebar ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .cv-main-section {
+            margin-bottom: 35px;
+        }
+
+        .cv-main-section h2 {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        .profile-text {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95em;
+            text-align: justify;
+        }
+
+        .experience-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: #3498db;
+            border-radius: 50%;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .job-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.05em;
+        }
+
+        .job-period {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .company-name {
+            color: #27ae60;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .job-description ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .job-description li {
+            margin-bottom: 6px;
+            color: #555;
+            font-size: 0.9em;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .job-description li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-size: 0.7em;
+            top: 2px;
+        }
+
+        .cv-main-header {
+            margin-bottom: 40px;
+        }
+
+        .cv-main-header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .cv-main-header .title {
+            color: #7f8c8d;
+            font-size: 1.3em;
+            font-weight: 400;
+        }
 
         /* Footer */
         footer {
@@ -224,14 +421,32 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
 
             .project-card {
                 min-width: 250px;
+            }
+
+            .cv-container {
+                flex-direction: column;
+                margin: 0 10px;
+            }
+
+            .cv-sidebar {
+                width: 100%;
+                padding: 30px 20px;
+            }
+
+            .cv-main {
+                padding: 30px 20px;
+            }
+
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cv-main-header h1 {
+                font-size: 2em;
             }
         }
 
@@ -258,6 +473,29 @@
             z-index: 9999;
             transition: width 0.3s ease;
         }
+
+        /* Smooth scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #888888;
+            font-size: 0.9em;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -265,6 +503,12 @@
 
     <header>
         <nav>
+            <a href="#home" class="logo">Matar Roll</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#cv">CV</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -272,8 +516,12 @@
         <div class="hero-content">
             <h1>Matar Roll</h1>
             <div class="subtitle">QA Engineer</div>
-
-
+            <p>Passionate about software quality assurance with expertise in manual and automated testing<br>
+            <strong>Tools & Technologies:</strong> Jira, Postman, Selenium, SQL Server, DevTools, Python, C<br>
+            <strong>Documentation:</strong> STP, STD, STR</p>
+        </div>
+        <div class="scroll-indicator">
+            ↓ Scroll to explore
         </div>
     </section>
 
@@ -289,7 +537,230 @@
         </div>
     </section>
 
+    <section id="cv" class="cv-section fade-in">
+        <div class="cv-container">
+            <div class="cv-sidebar">
+                <div class="cv-sidebar-section">
+                    <h3>Contact</h3>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <span>054-9000077</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <span>mataroll123@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>Kiryat Ono, Israel</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">💼</span>
+                        <span>linkedin.com/in/@Matar Roll</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🚗</span>
+                        <span>Driver's License & Car</span>
+                    </div>
+                </div>
+
+                <div class="cv-sidebar-section">
+                    <h3>Education</h3>
+                    <div style="margin-bottom: 20px;">
+                        <div style="color: white; font-weight: 600; margin-bottom: 5px;">2025</div>
+                        <div style="color: #bdc3c7; margin-bottom: 5px;">HackerU</div>
+                        <ul style="margin-top: 10px;">
+                            <li>Software Testing & QA</li>
+                            <li>Manual & Automated Testing</li>
+                            <li>SQL & Database Testing</li>
+                            <li>ISTQB Preparation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div style="color: white; font-weight: 600; margin-bottom: 5px;">High School</div>
+                        <div style="color: #bdc3c7; margin-bottom: 5px;">Full Diploma</div>
+                        <ul style="margin-top: 10px;">
+                            <li>High GPA</li>
+                            <li>Psychometric Score: 710</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cv-sidebar-section">
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>Jira - Bug Tracking</li>
+                        <li>Postman - API Testing</li>
+                        <li>Selenium - Automation</li>
+                        <li>SQL Server - Databases</li>
+                        <li>DevTools - Debugging</li>
+                        <li>Python - Programming</li>
+                        <li>C - Programming</li>
+                    </ul>
+                </div>
+
+                <div class="cv-sidebar-section">
+                    <h3>Testing Types</h3>
+                    <ul>
+                        <li>Functional Testing</li>
+                        <li>Regression Testing</li>
+                        <li>API Testing</li>
+                        <li>E2E Testing</li>
+                        <li>Web & Mobile Testing</li>
+                        <li>Test Documentation</li>
+                    </ul>
+                </div>
+
+                <div class="cv-sidebar-section">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>Hebrew (Native)</li>
+                        <li>English (Fluent)</li>
+                    </ul>
+                </div>
+
+                <div class="cv-sidebar-section">
+                    <h3>Key Traits</h3>
+                    <ul>
+                        <li>Logical Thinking</li>
+                        <li>Fast Learning</li>
+                        <li>Teamwork</li>
+                        <li>Work Under Pressure</li>
+                        <li>Independent Work</li>
+                        <li>Technical Aptitude</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cv-main">
+                <div class="cv-main-header">
+                    <h1>MATAR ROLL</h1>
+                    <div class="title">QA ENGINEER</div>
+                </div>
+
+                <div class="cv-main-section">
+                    <h2>Profile</h2>
+                    <p class="profile-text">
+                        QA Engineering graduate with strong background in customer service and private tutoring. Demonstrates rapid learning capabilities, logical thinking, and excellent teamwork skills. Seeking to launch a career in QA while leveraging experience in high-pressure environments and outstanding interpersonal relationships. Ready to contribute technical skills and service-oriented mindset to software quality assurance processes.
+                    </p>
+                </div>
+
+                <div class="cv-main-section">
+                    <h2>Work Experience</h2>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Private Mathematics Tutor</div>
+                                <div class="company-name">Self-Employed</div>
+                            </div>
+                            <div class="job-period">2021 - PRESENT</div>
+                        </div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Provide personalized mathematics tutoring for high school students at various levels</li>
+                                <li>Develop customized study plans and achieve measurable academic improvements</li>
+                                <li>Prepare students for matriculation exams with proven success rates</li>
+                                <li>Build strong, trust-based relationships with students and parents</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Customer Service Representative → Mentor</div>
+                                <div class="company-name">AIG Insurance</div>
+                            </div>
+                            <div class="job-period">2019 - 2021</div>
+                        </div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Worked in high-pressure call center environment with excellent performance</li>
+                                <li>Rapidly promoted to mentoring role for new employees within short timeframe</li>
+                                <li>Handled complex customer cases and problem resolution in car insurance division</li>
+                                <li>Maintained high service standards while working effectively in team environment</li>
+                                <li>Demonstrated fast learning ability and professionalism under pressure</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Combat Soldier - Iron Dome Systems</div>
+                                <div class="company-name">Israel Defense Forces (IDF)</div>
+                            </div>
+                            <div class="job-period">2017 - 2019</div>
+                        </div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Combat service in advanced air defense technology systems</li>
+                                <li>Responsibility for complex technological systems and equipment</li>
+                                <li>Teamwork under high pressure and challenging operational conditions</li>
+                                <li>Fast decision-making capabilities in critical pressure situations</li>
+                                <li>Technical aptitude and system reliability in defense operations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cv-main-section">
+                    <h2>Projects & Achievements</h2>
+                    
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Facebook Web Platform Testing</div>
+                                <div class="company-name">HackerU Course Project</div>
+                            </div>
+                            <div class="job-period">2025</div>
+                        </div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Conducted comprehensive functional testing of Facebook web platform</li>
+                                <li>Created detailed test documentation and bug reports</li>
+                                <li>Applied manual testing methodologies and best practices</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Waze Mobile Application Testing</div>
+                                <div class="company-name">HackerU Course Project</div>
+                            </div>
+                            <div class="job-period">2025</div>
+                        </div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Performed mobile application testing on Waze navigation app</li>
+                                <li>Tested user interface, functionality, and user experience</li>
+                                <li>Documented test cases and identified potential improvements</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cv-main-section">
+                    <h2>Additional Information</h2>
+                    <div class="job-description">
+                        <ul>
+                            <li>Available for full-time or part-time positions</li>
+                            <li>Willing to travel and work on client sites as required</li>
+                            <li>Flexible with working hours and ready for new professional challenges</li>
+                            <li>Eager to contribute to software quality and continuous improvement processes</li>
+                            <li>Strong commitment to learning new technologies and methodologies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
+        <p>&copy; 2025 Matar Roll. All rights reserved.</p>
     </footer>
 
     <script>
