@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matar Roll - QA Engineer</title>
+    <title>מטר רול - בודק תוכנה QA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a2e;
+            --accent-color: #00d4ff;
+            --accent-secondary: #ff6b6b;
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8b8;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --font-stack: 'Heebo', 'Segoe UI', Tahoma, Arial, sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,833 +24,1012 @@
         }
 
         body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #000000;
-            background: #ffffff;
+            font-family: var(--font-stack);
+            background: var(--primary-bg);
+            color: var(--text-primary);
             overflow-x: hidden;
         }
 
-        /* Header */
-        header {
+        /* שלב ראשון - אנימציית הטקסט */
+        .intro-screen {
             position: fixed;
             top: 0;
-            width: 100%;
-            padding: 20px 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e0e0e0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #000000;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #000000;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #666666;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: #000000;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 60vh;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 1s ease-out;
+        }
+
+        .intro-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .typewriter-container {
             text-align: center;
-            padding: 0 20px;
-            position: relative;
+            max-width: 80%;
         }
 
-        .hero-content {
-            max-width: 800px;
-            animation: fadeInUp 1s ease-out;
+        .typewriter-text {
+            font-size: 2rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            min-height: 3.2rem;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .cursor {
+            animation: blink 1s infinite;
+            color: var(--accent-color);
         }
 
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: #000000;
-            letter-spacing: -2px;
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
-        .hero .subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #666666;
-            font-weight: 300;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: #888888;
-            animation: fadeInUp 1s ease-out 0.4s both;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: #000000;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 0;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: 2px solid #000000;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .cta-button:hover {
-            background: #ffffff;
-            color: #000000;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 50px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            background: #ffffff;
-            text-align: center;
-        }
-
-        .projects-grid {
+        /* לוגואים קופצים */
+        .popup-logos {
             display: flex;
-            gap: 30px;
             justify-content: center;
             flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 2rem;
+            opacity: 0;
         }
 
-        .project-card {
-            background: #ffffff;
-            border: 2px solid #000000;
-            padding: 20px 40px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            text-decoration: none;
-            color: #000000;
-            display: inline-block;
-            font-weight: 600;
-            font-size: 1.1rem;
-            min-width: 200px;
-        }
-
-        .project-card:hover {
-            background: #000000;
-            color: #ffffff;
-            transform: translateY(-2px);
-            text-decoration: none;
-        }
-
-        /* CV Section */
-        .cv-section {
-            background: #f8f9fa;
-            padding: 80px 20px;
-            min-height: 100vh;
-        }
-
-        .cv-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        .logo-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            transform: scale(0);
+            animation: popIn 0.6s ease-out forwards;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
-            min-height: 90vh;
-            border-radius: 10px;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            min-width: 80px;
+            transition: all 0.3s ease;
+        }
+
+        .logo-item:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-color);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .logo-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            filter: brightness(1);
+        }
+
+        .logo-item span {
+            font-size: 0.8rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Fixed animation delays for logo items (accounting for h3 title being first child) */
+        .logo-item:nth-child(2) { animation-delay: 0.1s; }
+        .logo-item:nth-child(3) { animation-delay: 0.2s; }
+        .logo-item:nth-child(4) { animation-delay: 0.3s; }
+        .logo-item:nth-child(5) { animation-delay: 0.4s; }
+        .logo-item:nth-child(6) { animation-delay: 0.5s; }
+        .logo-item:nth-child(7) { animation-delay: 0.6s; }
+        .logo-item:nth-child(8) { animation-delay: 0.7s; }
+        .logo-item:nth-child(9) { animation-delay: 0.8s; }
+        .logo-item:nth-child(10) { animation-delay: 0.9s; }
+
+        /* Fixed animation delays for icon links (accounting for h3 title being first child) */
+        .icon-link:nth-child(2) { animation-delay: 0.2s; }
+        .icon-link:nth-child(3) { animation-delay: 0.4s; }
+        .icon-link:nth-child(4) { animation-delay: 0.6s; }
+        .icon-link:nth-child(5) { animation-delay: 0.8s; }
+        /* לוגואי פרויקטים */
+        .icon-link {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            transform: scale(0);
+            animation: popIn 0.6s ease-out forwards;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            min-width: 100px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .icon-link:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-color);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .icon-link img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: brightness(1);
+        }
+
+        .icon-link span {
+            font-size: 0.9rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Fixed animation delays for icon links (accounting for title being first child) */
+        .icon-link:nth-child(2) { animation-delay: 0.2s; }
+        .icon-link:nth-child(3) { animation-delay: 0.4s; }
+        .icon-link:nth-child(4) { animation-delay: 0.6s; }
+        .icon-link:nth-child(5) { animation-delay: 0.8s; }
+
+        /* כותרות בשלב הראשון */
+        .popup-section-title {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+            width: 100%;
+            animation: fadeIn 0.8s ease-out forwards;
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0) rotate(180deg);
+                opacity: 0;
+            }
+            80% {
+                transform: scale(1.1) rotate(-10deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* עמוד ראשי */
+        .main-content {
+            opacity: 0;
+            transition: opacity 1s ease-in;
+            padding-top: 2rem;
+        }
+
+        .main-content.visible {
+            opacity: 1;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            background: var(--gradient);
+            position: relative;
             overflow: hidden;
         }
 
-        .cv-sidebar {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
-            width: 350px;
-            padding: 40px 30px;
-            flex-shrink: 0;
-        }
-
-        .cv-main {
-            flex: 1;
-            padding: 40px;
-            background: white;
-        }
-
-        .cv-header-name {
-            font-size: 2.2em;
-            font-weight: 300;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-            color: white;
-        }
-
-        .cv-header-title {
-            font-size: 1.1em;
-            color: #bdc3c7;
-            margin-bottom: 40px;
-            font-weight: 400;
-        }
-
-        .cv-sidebar-section {
-            margin-bottom: 35px;
-        }
-
-        .cv-sidebar-section h3 {
-            font-size: 1.1em;
-            margin-bottom: 20px;
-            color: white;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 8px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            color: #ecf0f1;
-            font-size: 0.9em;
-        }
-
-        .contact-icon {
-            width: 20px;
-            margin-right: 15px;
-            font-size: 1.1em;
-        }
-
-        .cv-sidebar ul {
-            list-style: none;
-        }
-
-        .cv-sidebar ul li {
-            margin-bottom: 12px;
-            color: #ecf0f1;
-            position: relative;
-            padding-left: 15px;
-            font-size: 0.9em;
-        }
-
-        .cv-sidebar ul li::before {
-            content: '•';
+        .header::before {
+            content: '';
             position: absolute;
-            left: 0;
-            color: #3498db;
-            font-weight: bold;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
         }
 
-        .cv-main-section {
-            margin-bottom: 35px;
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .cv-main-section h2 {
-            font-size: 1.3em;
-            color: #2c3e50;
-            margin-bottom: 20px;
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: var(--accent-color);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .social-link img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
             font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--accent-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-item {
+            background: var(--secondary-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-item:hover::before {
+            left: 100%;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-icon img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--secondary-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .project-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-button {
+            background: var(--gradient);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 24px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
             display: inline-block;
         }
 
-        .profile-text {
-            color: #555;
-            line-height: 1.6;
-            font-size: 0.95em;
-            text-align: justify;
+        .project-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .experience-item {
-            margin-bottom: 25px;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        .experience-item::before {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 8px;
-            width: 8px;
-            height: 8px;
-            background: #3498db;
-            border-radius: 50%;
-        }
-
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
-        }
-
-        .job-title {
-            font-weight: 600;
-            color: #2c3e50;
-            font-size: 1.05em;
-        }
-
-        .job-period {
-            color: #7f8c8d;
-            font-size: 0.9em;
-            font-weight: 500;
-        }
-
-        .company-name {
-            color: #27ae60;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .job-description ul {
-            list-style: none;
-            margin-left: 0;
-        }
-
-        .job-description li {
-            margin-bottom: 6px;
-            color: #555;
-            font-size: 0.9em;
-            line-height: 1.5;
-            position: relative;
-            padding-left: 15px;
-        }
-
-        .job-description li::before {
-            content: '▶';
-            position: absolute;
-            left: 0;
-            color: #3498db;
-            font-size: 0.7em;
-            top: 2px;
-        }
-
-        .cv-main-header {
-            margin-bottom: 40px;
-        }
-
-        .cv-main-header h1 {
-            color: #2c3e50;
-            font-size: 2.5em;
-            font-weight: 300;
-            margin-bottom: 10px;
-        }
-
-        .cv-main-header .title {
-            color: #7f8c8d;
-            font-size: 1.3em;
-            font-weight: 400;
-        }
-
-        /* Footer */
-        footer {
+        /* וידיו */
+        .video-container {
             text-align: center;
-            padding: 40px 20px;
-            color: #666666;
-            border-top: 1px solid #e0e0e0;
-            background: #ffffff;
+            margin: 4rem 0;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 1.4rem;
-            }
-            
-            .projects-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .project-card {
-                min-width: 250px;
-            }
-
-            .cv-container {
-                flex-direction: column;
-                margin: 0 10px;
-            }
-
-            .cv-sidebar {
-                width: 100%;
-                padding: 30px 20px;
-            }
-
-            .cv-main {
-                padding: 30px 20px;
-            }
-
-            .job-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .cv-main-header h1 {
-                font-size: 2em;
-            }
+        .video-placeholder {
+            background: var(--secondary-bg);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            border: 2px dashed var(--accent-color);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
         }
 
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Minimalist loading line */
-        .loading-line {
+        /* אנימציות מיוחדות */
+        .surprise-animation {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #000000;
-            z-index: 9999;
-            transition: width 0.3s ease;
+            pointer-events: none;
+            z-index: 1001;
         }
 
-        /* Smooth scroll indicator */
-        .scroll-indicator {
+        .rocket {
+            font-size: 2rem;
+            animation: rocketFly 3s ease-in-out;
+        }
+
+        @keyframes rocketFly {
+            0% {
+                bottom: -50px;
+                right: 20px;
+                transform: rotate(45deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                bottom: 100vh;
+                right: 80px;
+                transform: rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .climbing-character {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            animation: climb 5s ease-in-out;
+        }
+
+        @keyframes climb {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-100px); }
+            100% { transform: translateY(0); }
+        }
+
+        .bubble {
+            position: fixed;
+            bottom: -50px;
+            font-size: 2rem;
+            animation: bubbleUp 4s ease-out;
+        }
+
+        @keyframes bubbleUp {
+            0% {
+                bottom: -50px;
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                bottom: 100vh;
+                opacity: 0;
+                transform: scale(1.2);
+            }
+        }
+
+        /* רספונסיביות */
+        @media (max-width: 768px) {
+            .typewriter-text {
+                font-size: 1.5rem;
+            }
+
+            .name {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-item {
+                min-width: 70px;
+                padding: 12px;
+            }
+
+            .logo-item img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .icon-link {
+                min-width: 85px;
+                padding: 12px;
+            }
+
+            .icon-link img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Accessibility improvements */
+        .social-link:focus,
+        .project-button:focus,
+        .icon-link:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* Skip to main content for screen readers */
+        .skip-link {
             position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--accent-color);
+            color: var(--primary-bg);
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1002;
+            border-radius: 4px;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        .skip-preview-btn {
+            position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            color: #888888;
-            font-size: 0.9em;
-            animation: bounce 2s infinite;
+            background: var(--accent-color);
+            color: var(--primary-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-family: var(--font-stack);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1001;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
+        .skip-preview-btn:hover {
+            background: var(--accent-secondary);
+            transform: translateX(-50%) translateY(-3px);
         }
     </style>
 </head>
 <body>
-    <div class="loading-line"></div>
 
-    <header>
-        <nav>
-            <a href="#home" class="logo">Matar Roll</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#cv">CV</a></li>
-            </ul>
-        </nav>
+<a href="#mainContent" class="skip-link">דלג לתוכן הראשי</a>
+
+<!-- שלב ראשון - מסך הפתיחה -->
+<div class="intro-screen" id="introScreen">
+    <div class="typewriter-container">
+        <div class="typewriter-text" id="typewriterText"></div>
+        <div class="popup-logos" id="popupLogos" style="display: none;">
+            <h3 class="popup-section-title">טכנולוגיות:</h3>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                <span>Python</span>
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C">
+                <span>C</span>
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.worldvectorlogo.com/logos/sql-database.svg" alt="SQL">
+                <span>SQL</span>
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" alt="Jira">
+                <span>Jira</span>
+            </div>
+            <div class="logo-item">
+                <img src="https://www.getxray.app/images/logo-xray.svg" alt="Xray">
+                <span>Xray</span>
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman">
+                <span>Postman</span>
+            </div>
+            <div class="logo-item">
+                <img src="https://developer.chrome.com/static/images/devtools-logo.svg" alt="DevTools">
+                <span>DevTools</span>
+            </div>
+            <div class="logo-item">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/selenium.svg" alt="Selenium">
+                <span>Selenium</span>
+            </div>
+        </div>
+        <div class="popup-logos" id="projectLogos" style="display: none; margin-top: 1rem;">
+            <h3 class="popup-section-title">הפרויקטים והפרופילים שלי:</h3>
+            <a class="icon-link" href="https://drive.google.com/drive/folders/1Td5GpL0eBBMueztI3CbCXrVKYJOvs1u5?usp=drive_link" target="_blank" rel="noopener">
+                <img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png" alt="Google Drive">
+                <span>פרויקט פייסבוק</span>
+            </a>
+            <a class="icon-link" href="https://drive.google.com/drive/folders/1Silo7yKihzk9UJ6XZspPcU7FNBxz6YDy?usp=drive_link" target="_blank" rel="noopener">
+                <img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png" alt="Google Drive">
+                <span>פרויקט וויז</span>
+            </a>
+            <a class="icon-link" href="https://github.com/mataroll" target="_blank" rel="noopener">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+                <span>GitHub</span>
+            </a>
+            <a class="icon-link" href="https://www.linkedin.com/in/matar-roll-b180ba36b/" target="_blank" rel="noopener">
+                <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" alt="LinkedIn">
+                <span>LinkedIn</span>
+            </a>
+        </div>
+    </div>
+    <button id="skipButton" class="skip-preview-btn">דלג על ההקדמה</button>
+</div>
+
+
+
+<!-- העמוד הראשי -->
+<div class="main-content" id="mainContent">
+    <!-- כותרת -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="name">מטר רול</h1>
+            <p style="font-size: 1.5rem; margin-bottom: 1rem;">בודק תוכנה (QA) - ידני ואוטומטי</p>
+
+            <div class="social-links">
+                <a href="https://github.com/mataroll" class="social-link" title="GitHub" target="_blank">
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+                </a>
+                <a href="https://www.linkedin.com/in/matar-roll-b180ba36b/" class="social-link" title="LinkedIn" target="_blank">
+                    <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" alt="LinkedIn">
+                </a>
+            </div>
+        </div>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Matar Roll</h1>
-            <div class="subtitle">QA Engineer</div>
-            <p>Passionate about software quality assurance with expertise in manual and automated testing<br>
-            <strong>Tools & Technologies:</strong> Jira, Postman, Selenium, SQL Server, DevTools, Python, C<br>
-            <strong>Documentation:</strong> STP, STD, STR</p>
-        </div>
-        <div class="scroll-indicator">
-            ↓ Scroll to explore
+    <!-- קצת עלי -->
+    <section class="section">
+        <h2 class="section-title">קצת עלי</h2>
+        <p class="about-text">
+            אני בוגר קורס QA ידני ואוטומטי, בעל ניסיון מעשי בפרויקטים אמיתיים.
+            אני לומד מהר, יסודי מאוד, מביא איתי ניסיון מהשירות הצבאי עם מערכות מורכבות,
+            וכן גישה אנושית, שירותית וסקרנית.
+        </p>
+    </section>
+
+    <!-- כלים וטכנולוגיות -->
+    <section class="section">
+        <h2 class="section-title">הכלים והטכנולוגיות שלי</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C">
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <img src="https://cdn.worldvectorlogo.com/logos/sql-database.svg" alt="SQL">
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" alt="Jira">
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <img src="https://www.getxray.app/images/logo-xray.svg" alt="Xray">
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman">
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <img src="https://developer.chrome.com/static/images/devtools-logo.svg" alt="DevTools">
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/selenium.svg" alt="Selenium">
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="projects" class="projects">
+    <!-- פרויקטים -->
+    <section class="section">
+        <h2 class="section-title">הפרויקטים שלי</h2>
         <div class="projects-grid">
-            <a href="https://drive.google.com/drive/folders/1Td5GpL0eBBMueztI3CbCXrVKYJOvs1u5?usp=drive_link" class="project-card fade-in" target="_blank">
-                Facebook Testing Project
-            </a>
+        <div class="project-card">
+            <div class="project-content">
+                <h3 class="project-title">📘 Facebook</h3>
+                <p class="project-description">
+                    בדיקות מקיפות לפלטפורמת הרשתות החברתיות הגדולה בעולם
+                </p>
+                <a href="https://drive.google.com/drive/folders/1Td5GpL0eBBMueztI3CbCXrVKYJOvs1u5?usp=drive_link" target="_blank" class="project-button">צפה בפרויקט</a>
+            </div>
+        </div>
 
-            <a href="https://drive.google.com/drive/folders/1Silo7yKihzk9UJ6XZspPcU7FNBxz6YDy?usp=drive_link" class="project-card fade-in" target="_blank">
-                Waze Testing Project
-            </a>
+        <div class="project-card">
+            <div class="project-content">
+                <h3 class="project-title">🗺️ Waze</h3>
+                <p class="project-description">
+                    בדיקות ניווט ומערכות מיפוי לאפליקציית הניווט המובילה
+                </p>
+                <a href="https://drive.google.com/drive/folders/1Silo7yKihzk9UJ6XZspPcU7FNBxz6YDy?usp=drive_link" target="_blank" class="project-button">צפה בפרויקט</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-content">
+                <h3 class="project-title">👠 Gali Shoes</h3>
+                <p class="project-description">
+                    בדיקות אתר מסחר אלקטרוני מלא עם מערכת תשלומים (בעבודה)
+                </p>
+                <a href="#" class="project-button" style="opacity: 0.6; cursor: not-allowed;">בקרוב</a>
+            </div>
+        </div>
         </div>
     </section>
 
-    <section id="cv" class="cv-section fade-in">
-        <div class="cv-container">
-            <div class="cv-sidebar">
-                <div class="cv-sidebar-section">
-                    <h3>Contact</h3>
-                    <div class="contact-item">
-                        <span class="contact-icon">📞</span>
-                        <span>054-9000077</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">✉️</span>
-                        <span>mataroll123@gmail.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">📍</span>
-                        <span>Kiryat Ono, Israel</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">💼</span>
-                        <span>linkedin.com/in/@Matar Roll</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🚗</span>
-                        <span>Driver's License & Car</span>
-                    </div>
-                </div>
-
-                <div class="cv-sidebar-section">
-                    <h3>Education</h3>
-                    <div style="margin-bottom: 20px;">
-                        <div style="color: white; font-weight: 600; margin-bottom: 5px;">2025</div>
-                        <div style="color: #bdc3c7; margin-bottom: 5px;">HackerU</div>
-                        <ul style="margin-top: 10px;">
-                            <li>Software Testing & QA</li>
-                            <li>Manual & Automated Testing</li>
-                            <li>SQL & Database Testing</li>
-                            <li>ISTQB Preparation</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div style="color: white; font-weight: 600; margin-bottom: 5px;">High School</div>
-                        <div style="color: #bdc3c7; margin-bottom: 5px;">Full Diploma</div>
-                        <ul style="margin-top: 10px;">
-                            <li>High GPA</li>
-                            <li>Psychometric Score: 710</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="cv-sidebar-section">
-                    <h3>Technical Skills</h3>
-                    <ul>
-                        <li>Jira - Bug Tracking</li>
-                        <li>Postman - API Testing</li>
-                        <li>Selenium - Automation</li>
-                        <li>SQL Server - Databases</li>
-                        <li>DevTools - Debugging</li>
-                        <li>Python - Programming</li>
-                        <li>C - Programming</li>
-                    </ul>
-                </div>
-
-                <div class="cv-sidebar-section">
-                    <h3>Testing Types</h3>
-                    <ul>
-                        <li>Functional Testing</li>
-                        <li>Regression Testing</li>
-                        <li>API Testing</li>
-                        <li>E2E Testing</li>
-                        <li>Web & Mobile Testing</li>
-                        <li>Test Documentation</li>
-                    </ul>
-                </div>
-
-                <div class="cv-sidebar-section">
-                    <h3>Languages</h3>
-                    <ul>
-                        <li>Hebrew (Native)</li>
-                        <li>English (Fluent)</li>
-                    </ul>
-                </div>
-
-                <div class="cv-sidebar-section">
-                    <h3>Key Traits</h3>
-                    <ul>
-                        <li>Logical Thinking</li>
-                        <li>Fast Learning</li>
-                        <li>Teamwork</li>
-                        <li>Work Under Pressure</li>
-                        <li>Independent Work</li>
-                        <li>Technical Aptitude</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="cv-main">
-                <div class="cv-main-header">
-                    <h1>MATAR ROLL</h1>
-                    <div class="title">QA ENGINEER</div>
-                </div>
-
-                <div class="cv-main-section">
-                    <h2>Profile</h2>
-                    <p class="profile-text">
-                        QA Engineering graduate with strong background in customer service and private tutoring. Demonstrates rapid learning capabilities, logical thinking, and excellent teamwork skills. Seeking to launch a career in QA while leveraging experience in high-pressure environments and outstanding interpersonal relationships. Ready to contribute technical skills and service-oriented mindset to software quality assurance processes.
-                    </p>
-                </div>
-
-                <div class="cv-main-section">
-                    <h2>Work Experience</h2>
-
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div>
-                                <div class="job-title">Private Mathematics Tutor</div>
-                                <div class="company-name">Self-Employed</div>
-                            </div>
-                            <div class="job-period">2021 - PRESENT</div>
-                        </div>
-                        <div class="job-description">
-                            <ul>
-                                <li>Provide personalized mathematics tutoring for high school students at various levels</li>
-                                <li>Develop customized study plans and achieve measurable academic improvements</li>
-                                <li>Prepare students for matriculation exams with proven success rates</li>
-                                <li>Build strong, trust-based relationships with students and parents</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div>
-                                <div class="job-title">Customer Service Representative → Mentor</div>
-                                <div class="company-name">AIG Insurance</div>
-                            </div>
-                            <div class="job-period">2019 - 2021</div>
-                        </div>
-                        <div class="job-description">
-                            <ul>
-                                <li>Worked in high-pressure call center environment with excellent performance</li>
-                                <li>Rapidly promoted to mentoring role for new employees within short timeframe</li>
-                                <li>Handled complex customer cases and problem resolution in car insurance division</li>
-                                <li>Maintained high service standards while working effectively in team environment</li>
-                                <li>Demonstrated fast learning ability and professionalism under pressure</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div>
-                                <div class="job-title">Combat Soldier - Iron Dome Systems</div>
-                                <div class="company-name">Israel Defense Forces (IDF)</div>
-                            </div>
-                            <div class="job-period">2017 - 2019</div>
-                        </div>
-                        <div class="job-description">
-                            <ul>
-                                <li>Combat service in advanced air defense technology systems</li>
-                                <li>Responsibility for complex technological systems and equipment</li>
-                                <li>Teamwork under high pressure and challenging operational conditions</li>
-                                <li>Fast decision-making capabilities in critical pressure situations</li>
-                                <li>Technical aptitude and system reliability in defense operations</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cv-main-section">
-                    <h2>Projects & Achievements</h2>
-                    
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div>
-                                <div class="job-title">Facebook Web Platform Testing</div>
-                                <div class="company-name">HackerU Course Project</div>
-                            </div>
-                            <div class="job-period">2025</div>
-                        </div>
-                        <div class="job-description">
-                            <ul>
-                                <li>Conducted comprehensive functional testing of Facebook web platform</li>
-                                <li>Created detailed test documentation and bug reports</li>
-                                <li>Applied manual testing methodologies and best practices</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div>
-                                <div class="job-title">Waze Mobile Application Testing</div>
-                                <div class="company-name">HackerU Course Project</div>
-                            </div>
-                            <div class="job-period">2025</div>
-                        </div>
-                        <div class="job-description">
-                            <ul>
-                                <li>Performed mobile application testing on Waze navigation app</li>
-                                <li>Tested user interface, functionality, and user experience</li>
-                                <li>Documented test cases and identified potential improvements</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cv-main-section">
-                    <h2>Additional Information</h2>
-                    <div class="job-description">
-                        <ul>
-                            <li>Available for full-time or part-time positions</li>
-                            <li>Willing to travel and work on client sites as required</li>
-                            <li>Flexible with working hours and ready for new professional challenges</li>
-                            <li>Eager to contribute to software quality and continuous improvement processes</li>
-                            <li>Strong commitment to learning new technologies and methodologies</li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- וידיו -->
+    <section class="section">
+        <h2 class="section-title">הכירו אותי</h2>
+        <div class="video-container">
+            <div class="video-placeholder">
+                🎥 כאן יוטמע הסרטון שלך<br>
+                <small>הוסף את קישור הוידיו שלך כאן</small>
             </div>
         </div>
     </section>
+</div>
 
-    <footer>
-        <p>&copy; 2025 Matar Roll. All rights reserved.</p>
-    </footer>
+<script>
+    // טקסטים לאנימציה
+    const texts = [
+        [
+            "ברוכים הבאים לאתר שלי!",
+            "אני מטר רול, בודק תוכנה QA – ידני ואוטומטי.",
+            "האתר הזה הוא כרטיס הביקור הדיגיטלי שלי."
+        ],
+        [
+            "קצת עלי:",
+            "אני בוגר קורס בדיקות,עשיתי שני פרוייקטים בקורס על פייסבוק ועל וויז.",
+            "בימים אלה אני עובד על פרוייקט בדיקות נוסף לאתר הנעליים של גלי.",
+            "אני לומד מהר, יסודי מאוד, נחוש להצליח ולפרוץ את דרכי בעולם הטכנולוגיה.",
+            "וכן גישה אנושית, שירותית וסקרנית."
+        ],
+        [
+            "הכלים והפרויקטים שלי:"
+        ]
+    ];
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+    let currentTextIndex = 0;
+    let currentLineIndex = 0;
+    let currentCharIndex = 0;
+
+    const typewriterElement = document.getElementById('typewriterText');
+    const popupLogos = document.getElementById('popupLogos');
+    const projectLogos = document.getElementById('projectLogos');
+
+    function typeWriter() {
+        const currentText = texts[currentTextIndex];
+
+        if (currentLineIndex < currentText.length) {
+            const currentLine = currentText[currentLineIndex];
+
+            if (currentCharIndex < currentLine.length) {
+                // הקלדת תו חדש
+                const currentContent = typewriterElement.innerHTML.replace('<span class="cursor">|</span>', '');
+                const lines = currentContent.split('<br>');
+
+                // Fix: Ensure the array has enough elements
+                while (lines.length <= currentLineIndex) {
+                    lines.push('');
                 }
-            });
-        });
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+                lines[currentLineIndex] = currentLine.substring(0, currentCharIndex + 1);
+                typewriterElement.innerHTML = lines.join('<br>') + '<span class="cursor">|</span>';
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            const loadingLine = document.querySelector('.loading-line');
-            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-            
-            loadingLine.style.width = scrollPercent + '%';
-            
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.borderBottom = '1px solid #ccc';
+                currentCharIndex++;
+                setTimeout(typeWriter, 50);
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.borderBottom = '1px solid #e0e0e0';
-            }
-        });
+                // סיום שורה - מעבר לשורה הבאה
+                currentLineIndex++;
+                currentCharIndex = 0;
 
-        // Project card interactions
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.borderColor = '#666666';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.borderColor = '#000000';
-            });
-        });
-
-        // Simple typing effect for name
-        const heroTitle = document.querySelector('.hero h1');
-        const text = heroTitle.textContent;
-        heroTitle.textContent = '';
-        let i = 0;
-
-        function typeWriter() {
-            if (i < text.length) {
-                heroTitle.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 80);
+                if (currentLineIndex < currentText.length) {
+                    const currentContent = typewriterElement.innerHTML.replace('<span class="cursor">|</span>', '');
+                    typewriterElement.innerHTML = currentContent + '<br><span class="cursor">|</span>';
+                    setTimeout(typeWriter, 1000);
+                } else {
+                    // סיום טקסט
+                    if (currentTextIndex === 2) {
+                        // טקסט אחרון - הצגת לוגואים
+                        setTimeout(() => {
+                            popupLogos.style.display = 'flex';
+                            popupLogos.style.opacity = '1';
+                            setTimeout(() => {
+                                projectLogos.style.display = 'flex';
+                                projectLogos.style.opacity = '1';
+                                setTimeout(startMainContent, 3000);
+                            }, 2000);
+                        }, 1000);
+                    } else {
+                        // מעבר לטקסט הבא - אפקט דהייה והופעה
+                        setTimeout(() => {
+                            fadeAndReplaceText();
+                        }, 2000);
+                    }
+                }
             }
         }
+    }
 
-        setTimeout(typeWriter, 500);
-    </script>
+    function fadeAndReplaceText() {
+        // הסתרת הסמן ודהייה של הטקסט הנוכחי
+        typewriterElement.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        typewriterElement.style.opacity = '0';
+        typewriterElement.style.transform = 'translateY(-20px) scale(0.95)';
+
+        setTimeout(() => {
+            // החלפת הטקסט והכנה לטקסט הבא
+            currentTextIndex++;
+            currentLineIndex = 0;
+            currentCharIndex = 0;
+
+            // איפוס לטקסט חדש
+            typewriterElement.innerHTML = '<span class="cursor">|</span>';
+            typewriterElement.style.transform = 'translateY(20px) scale(1.05)';
+
+            // Wait for next frame to ensure DOM update
+            requestAnimationFrame(() => {
+                // הופעה חזרה עם הטקסט החדש
+                typewriterElement.style.opacity = '1';
+                typewriterElement.style.transform = 'translateY(0) scale(1)';
+
+                setTimeout(() => {
+                    // הסרת הטרנזישן להקלדה רגילה
+                    typewriterElement.style.transition = '';
+                    typeWriter();
+                }, 800);
+            });
+        }, 800);
+    }
+
+    function startMainContent() {
+        document.getElementById('introScreen').classList.add('hidden');
+        setTimeout(() => {
+            document.getElementById('mainContent').classList.add('visible');
+            document.body.style.overflow = 'auto';
+            startSurpriseAnimations();
+        }, 1000);
+    }
+
+    // אנימציות הפתעה
+    // אנימציות הפתעה
+    let animationInterval;
+
+    function startSurpriseAnimations() {
+        const animations = [
+            createRocket,
+            createClimbingCharacter,
+            createBubble
+        ];
+
+        function runRandomAnimation() {
+            const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+            randomAnimation();
+
+            animationInterval = setTimeout(runRandomAnimation, Math.random() * 40000 + 30000); // 30-70 שניות
+        }
+
+        setTimeout(runRandomAnimation, 10000); // התחלה אחרי 10 שניות
+    }
+
+    // Function to stop animations if needed
+    function stopSurpriseAnimations() {
+        if (animationInterval) {
+            clearTimeout(animationInterval);
+            animationInterval = null;
+        }
+    }
+
+    function createRocket() {
+        const rocket = document.createElement('div');
+        rocket.className = 'surprise-animation rocket';
+        rocket.innerHTML = '🚀';
+        rocket.style.position = 'fixed';
+        rocket.style.bottom = '-50px';
+        rocket.style.right = '20px';
+        document.body.appendChild(rocket);
+
+        setTimeout(() => {
+            rocket.remove();
+        }, 3000);
+    }
+
+    function createClimbingCharacter() {
+        const character = document.createElement('div');
+        character.className = 'surprise-animation climbing-character';
+        character.innerHTML = '🧗‍♂️';
+        document.body.appendChild(character);
+
+        setTimeout(() => {
+            character.remove();
+        }, 5000);
+    }
+
+    function createBubble() {
+        const bubble = document.createElement('div');
+        bubble.className = 'surprise-animation bubble';
+        bubble.innerHTML = '🫧';
+        bubble.style.left = Math.random() * 80 + 10 + '%';
+        document.body.appendChild(bubble);
+
+        setTimeout(() => {
+            bubble.remove();
+        }, 4000);
+    }
+
+    // התחלת האנימציה
+    document.addEventListener('DOMContentLoaded', () => {
+        document.body.style.overflow = 'hidden';
+        setTimeout(typeWriter, 1000);
+    });
+
+    // מעבר ישיר לעמוד הראשי (לדיבוג)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            startMainContent();
+        }
+    });
+
+    // Skip button functionality
+    document.getElementById('skipButton').addEventListener('click', () => {
+        startMainContent();
+    });
+</script>
 </body>
 </html>
