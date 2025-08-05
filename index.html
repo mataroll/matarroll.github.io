@@ -1,1023 +1,624 @@
-
-
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Marlon - Web Designer</title> <style> * { margin: 0; padding: 0; box-sizing: border-box;
-
-    pasted
-
-    Edit
-    show me where in the code the sizing of the winwos
-
-    Edit
-
-
-    Looking at the code, here are the key places where window/container sizing is controlled:
-
-    Main Container Sizing
-    css
-    .main-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    padding-top: 120px;
-}
-    Main Card Sizing
-    css
-    .main-card {
-        background: white;
-        border-radius: 24px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        position: relative;
-        overflow: hidden;
-        min-height: 600px;  /* Minimum height */
-    }
-    Content Section Sizing
-    css
-    .content-section {
-        /* ... */
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;  /* Takes full card dimensions */
-        /* ... */
-    }
-    Home Content Grid Sizing
-    css
-    .home-content {
-        padding: 4rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;  /* Two equal columns */
-        gap: 4rem;
-        align-items: center;
-        width: 100%;
-    }
-    Profile Image Container Sizing
-    css
-    .blob-container {
-        position: relative;
-        width: 400px;
-        height: 400px;
-    }
-
-    .profile-image {
-        /* ... */
-        width: 320px;
-        height: 320px;
-        /* ... */
-    }
-    Mobile Responsive Sizing
-    css
-    @media (max-width: 768px) {
-    .home-content {
-        grid-template-columns: 1fr;  /* Single column on mobile */
-        gap: 2rem;
-        padding: 2rem;
-        text-align: center;
-    }
-
-    .blob-container {
-        width: 300px;
-        height: 300px;
-    }
-
-    .profile-image {
-        width: 240px;
-        height: 240px;
-    }
-}
-    The main window is constrained to 1200px max-width and centers itself with auto margins. The card has a minimum height of 600px and content sections fill the entire card area using absolute positioning.
-
-
-
-
-    its great in anywhere but my phone.
-    which parts of the codes are we need to improve to make it iphone nice biew
-
-    Edit
-    Looking at the code, here are the key areas that need improvement for better iPhone viewing:
-
-    1. Viewport and Container Issues
-    css
-        /* Current - too much padding on mobile */
-    .main-container {
-    padding: 2rem;
-    padding-top: 120px; /* Too much top padding */
-}
-
-    /* Improve to: */
-    @media (max-width: 768px) {
-        .main-container {
-            padding: 1rem;
-            padding-top: 60px; /* Reduce top padding */
-        }
-    }
-    2. Navigation Bar Mobile Issues
-    css
-        /* Current navbar is too tall on mobile */
-    .navbar {
-    padding: 2rem 4rem; /* Too much padding */
-}
-
-    /* Improve the mobile version: */
-    @media (max-width: 768px) {
-        .navbar {
-            padding: 1rem; /* Much smaller padding */
-            position: fixed; /* Make it stick to top */
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
-    }
-    3. Content Section Sizing
-    css
-        /* Current sections have too much padding */
-    .section-content {
-    padding: 4rem; /* Too much for mobile */
-}
-
-    /* Add mobile improvement: */
-    @media (max-width: 768px) {
-        .section-content {
-            padding: 2rem 1rem; /* Much smaller padding */
-        }
-
-        .home-content {
-            padding: 2rem 1rem; /* Reduce from current 2rem */
-        }
-    }
-    4. Typography Issues
-    css
-        /* Current text is too large on mobile */
-    .hero-content h1 {
-    font-size: 2.5rem; /* Still too big for iPhone */
-}
-
-    .section-content h2 {
-        font-size: 2.2rem; /* Too big */
-    }
-
-    /* Improve to: */
-    @media (max-width: 480px) { /* Specific iPhone breakpoint */
-        .hero-content h1 {
-            font-size: 2rem; /* Smaller */
-            line-height: 1.1;
-        }
-
-        .section-content h2 {
-            font-size: 1.8rem;
-        }
-
-        .section-content p {
-            font-size: 1rem; /* Reduce from 1.2rem */
-        }
-    }
-    5. Add iPhone-specific Breakpoint
-    css
-        /* Add this new breakpoint for smaller phones */
-    @media (max-width: 480px) {
-    .main-container {
-        padding: 0.5rem;
-        padding-top: 80px;
-    }
-
-    .main-card {
-        border-radius: 16px; /* Smaller radius */
-        min-height: 500px;
-    }
-
-    .blob-container {
-        width: 250px; /* Even smaller */
-        height: 250px;
-    }
-
-    .profile-image {
-        width: 200px;
-        height: 200px;
-    }
-}
-    6. Fix Mobile Menu Issues
-    css
-    .nav-links {
-    top: 80px; /* Current value might not align with fixed navbar */
-}
-
-    /* Improve to: */
-    @media (max-width: 768px) {
-        .nav-links {
-            top: 60px; /* Match navbar height */
-            padding-top: 1rem; /* Reduce padding */
-        }
-    }
-    The main issues are:
-
-    Too much padding everywhere on mobile
-    Text sizes too large for iPhone screens
-    Need a specific breakpoint for phones under 480px width
-    Navigation bar should be fixed on mobile
-    Content needs more compact spacing
-    Would you like me to create an updated version with these iPhone optimizations?
-
-
-
-
-    yes
-
-    Edit
-
-    iPhone-Optimized Portfolio Website
-    Interactive artifact
-
-
-
-    Continue
-
-    Edit
-
-    iPhone-Optimized Portfolio Website
-    Interactive artifact ∙ Version 2
-    Perfect! I've created an iPhone-optimized version of your portfolio. Here are the key improvements for better iPhone viewing:
-
-    🚀 Major iPhone Optimizations:
-            1. Fixed Navigation Bar
-            Now sticks to the top on mobile for easy access
-            Reduced padding from 2rem 4rem to 0.8rem 1rem on iPhone
-            Smaller logo and controls for mobile screens
-            2. Better Mobile Breakpoints
-    Tablet: 768px - Good for iPad-sized devices
-    iPhone: 480px - Optimized for most iPhones
-    Small iPhone: 375px - iPhone SE and smaller devices
-    3. Content Spacing Improvements
-    Reduced padding everywhere on mobile
-    Smaller text sizes that fit iPhone screens better
-    Tighter spacing between elements
-    4. iPhone-Specific Typography
-    Hero title: 3.5rem → 2.5rem → 2rem → 1.7rem (as screen gets smaller)
-Section headers: 3rem → 2.2rem → 1.8rem → 1.6rem
-Body text: Optimized for readability on small screens
-5. Profile Image Scaling
-Desktop: 400px → 320px
-Tablet: 300px → 240px
-iPhone: 250px → 200px
-Small iPhone: 220px → 180px
-6. Enhanced Mobile Menu
-Hamburger menu with smooth animations
-Full-screen overlay for easy navigation
-Larger touch targets for better accessibility
-7. Card and Grid Optimizations
-Single column layout on mobile
-Reduced gaps between cards
-Smaller padding inside cards
-Optimized touch targets
-The website now provides a smooth, native-like experience on iPhones with proper spacing, readable text, and easy navigation! 📱✨
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marlon - Web Designer</title>
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #f0f2ff 0%, #e8ecff 100%);
-        min-height: 100vh;
-        color: #2d3748;
-    }
-
-    /* Navigation */
-    .navbar {
-        background: white;
-        padding: 2rem 4rem;
-        border-radius: 24px 24px 0 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #2d3748;
-    }
-
-    .nav-links {
-        display: flex;
-        list-style: none;
-        gap: 2rem;
-    }
-
-    .nav-links a {
-        text-decoration: none;
-        color: #718096;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        position: relative;
-        padding: 0.5rem 0;
-        cursor: pointer;
-    }
-
-    .nav-links a:hover {
-        color: #4299e1;
-    }
-
-    .nav-links a.active {
-        color: #2d3748;
-    }
-
-    .nav-links a.active::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: #4299e1;
-        border-radius: 2px;
-    }
-
-    /* Main Container */
-    .main-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem;
-        padding-top: 120px;
-    }
-
-    .main-card {
-        background: white;
-        border-radius: 24px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        position: relative;
-        overflow: hidden;
-        min-height: 600px;
-    }
-
-    /* Content Sections */
-    .content-section {
-        opacity: 0;
-        transform: translateY(20px) scale(0.98);
-        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        pointer-events: none;
-        filter: blur(2px) brightness(0.95);
-        will-change: transform, opacity, filter;
-    }
-
-    .content-section.active {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        pointer-events: all;
-        position: relative;
-        filter: blur(0px) brightness(1);
-        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        transition-delay: 0.15s;
-    }
-
-    .content-section.exiting {
-        opacity: 0;
-        transform: translateY(-15px) scale(1.02);
-        filter: blur(3px) brightness(1.05);
-        transition: all 0.5s cubic-bezier(0.6, 0.04, 0.98, 0.335);
-    }
-
-    /* Home Section */
-    .home-content {
-        padding: 4rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-        width: 100%;
-    }
-
-    .hero-content h1 {
-        font-size: 3.5rem;
-        font-weight: 300;
-        line-height: 1.2;
-        margin-bottom: 2rem;
-    }
-
-    .hero-content .greeting {
-        color: #2d3748;
-        font-weight: 400;
-    }
-
-    .hero-content .name {
-        color: #4299e1;
-        font-weight: 700;
-    }
-
-    .hero-content .role {
-        color: #2d3748;
-        font-weight: 600;
-    }
-
-    .contact-btn {
-        background: #4299e1;
-        color: white;
-        border: none;
-        padding: 1rem 2rem;
-        border-radius: 12px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-bottom: 3rem;
-        display: inline-block;
-        text-decoration: none;
-    }
-
-    .contact-btn:hover {
-        background: #3182ce;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(66, 153, 225, 0.3);
-    }
-
-    .social-links {
-        display: flex;
-        gap: 1.5rem;
-    }
-
-    .social-links a {
-        color: #718096;
-        font-size: 1.5rem;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 8px;
-    }
-
-    .social-links a:hover {
-        color: #4299e1;
-        background: rgba(66, 153, 225, 0.1);
-        transform: translateY(-2px);
-    }
-
-    /* Hero Image */
-    .hero-image {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .blob-container {
-        position: relative;
-        width: 400px;
-        height: 400px;
-    }
-
-    .blob {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-        animation: blob 8s ease-in-out infinite;
-    }
-
-    .profile-image {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 320px;
-        height: 320px;
-        border-radius: 50%;
-        object-fit: cover;
-        z-index: 2;
-        border: 8px solid white;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    @keyframes blob {
-        0% {
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            transform: rotate(0deg);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marlon - Web Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        50% {
-            border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-            transform: rotate(180deg);
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f2ff 0%, #e8ecff 100%);
+            min-height: 100vh;
+            color: #2d3748;
         }
-        100% {
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            transform: rotate(360deg);
-        }
-    }
 
-    /* Other sections styling */
-    .section-content {
-        padding: 4rem;
-        text-align: center;
-        width: 100%;
-        max-width: 800px;
-    }
-
-    .section-content h2 {
-        font-size: 3rem;
-        font-weight: 700;
-        color: #2d3748;
-        margin-bottom: 2rem;
-    }
-
-    .section-content p {
-        font-size: 1.2rem;
-        color: #718096;
-        line-height: 1.8;
-        margin-bottom: 2rem;
-    }
-
-    /* Skills specific styling */
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-    }
-
-    .skill-card {
-        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-        padding: 2rem;
-        border-radius: 16px;
-        text-align: center;
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
-    }
-
-    .skill-card:hover {
-        transform: translateY(-5px);
-        border-color: #4299e1;
-        box-shadow: 0 10px 30px rgba(66, 153, 225, 0.1);
-    }
-
-    .skill-card h3 {
-        color: #2d3748;
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-    }
-
-    .skill-card p {
-        font-size: 1rem;
-        color: #718096;
-    }
-
-    /* Works specific styling */
-    .works-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-    }
-
-    .work-card {
-        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-        border-radius: 16px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .work-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .work-image {
-        width: 100%;
-        height: 200px;
-        background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-
-    .work-content {
-        padding: 1.5rem;
-    }
-
-    .work-content h3 {
-        color: #2d3748;
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .work-content p {
-        font-size: 1rem;
-        color: #718096;
-        margin: 0;
-    }
-
-    /* Contact specific styling */
-    .contact-info {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-    }
-
-    .contact-card {
-        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-        padding: 2rem;
-        border-radius: 16px;
-        text-align: center;
-        transition: all 0.3s ease;
-    }
-
-    .contact-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(66, 153, 225, 0.1);
-    }
-
-    .contact-card h3 {
-        color: #2d3748;
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-    }
-
-    .contact-card p {
-        font-size: 1rem;
-        color: #4299e1;
-        margin: 0;
-        font-weight: 600;
-    }
-
-    /* Navigation Controls */
-    .nav-controls {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-    }
-
-    .language-toggle {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(66, 153, 225, 0.1);
-        border-radius: 20px;
-        transition: all 0.3s ease;
-    }
-
-    .lang-option {
-        cursor: pointer;
-        font-weight: 600;
-        color: #718096;
-        transition: all 0.3s ease;
-        padding: 0.25rem 0.5rem;
-        border-radius: 12px;
-        font-size: 0.9rem;
-    }
-
-    .lang-option.active {
-        color: #4299e1;
-        background: rgba(66, 153, 225, 0.2);
-    }
-
-    .lang-option:hover:not(.active) {
-        color: #2d3748;
-    }
-
-    .lang-separator {
-        color: #cbd5e0;
-        font-weight: 300;
-    }
-
-    /* RTL Support */
-    body.rtl {
-        direction: rtl;
-    }
-
-    body.rtl .navbar {
-        direction: rtl;
-    }
-
-    body.rtl .nav-links {
-        direction: rtl;
-    }
-
-    body.rtl .home-content {
-        direction: rtl;
-    }
-
-    body.rtl .section-content {
-        direction: rtl;
-    }
-
-    /* Hamburger Menu */
-    .hamburger {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-        gap: 4px;
-    }
-
-    .hamburger span {
-        width: 25px;
-        height: 3px;
-        background: #2d3748;
-        border-radius: 2px;
-        transition: all 0.3s ease;
-    }
-
-    /* Tablet Styles */
-    @media (max-width: 768px) {
+        /* Navigation */
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            border-radius: 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .main-container {
-            padding: 1rem;
-            padding-top: 80px;
-        }
-
-        .nav-controls {
-            gap: 1rem;
-        }
-
-        .language-toggle {
-            padding: 0.4rem 0.8rem;
-            gap: 0.3rem;
-        }
-
-        .lang-option {
-            font-size: 0.8rem;
-            padding: 0.2rem 0.4rem;
-        }
-
-        .hamburger {
+            background: white;
+            padding: 2rem 4rem;
+            border-radius: 24px 24px 0 0;
             display: flex;
-        }
-
-        .nav-links {
-            position: fixed;
-            top: 70px;
-            left: -100%;
-            width: 100%;
-            height: calc(100vh - 70px);
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            flex-direction: column;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
-            padding-top: 2rem;
-            gap: 2rem;
-            transition: left 0.3s ease;
-        }
-
-        .nav-links.active {
-            left: 0;
-        }
-
-        .home-content {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-
-        .hero-content h1 {
-            font-size: 2.5rem;
-        }
-
-        .blob-container {
-            width: 300px;
-            height: 300px;
-        }
-
-        .profile-image {
-            width: 240px;
-            height: 240px;
-        }
-
-        .section-content {
-            padding: 2rem 1rem;
-        }
-
-        .section-content h2 {
-            font-size: 2.2rem;
-        }
-
-        .skills-grid,
-        .works-grid,
-        .contact-info {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    /* iPhone and Small Mobile Styles */
-    @media (max-width: 480px) {
-        .navbar {
-            padding: 0.8rem 1rem;
         }
 
         .logo {
-            font-size: 1.3rem;
-        }
-
-        .main-container {
-            padding: 0.5rem;
-            padding-top: 70px;
-        }
-
-        .main-card {
-            border-radius: 16px;
-            min-height: 500px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
         }
 
         .nav-links {
-            top: 60px;
-            height: calc(100vh - 60px);
-            padding-top: 1rem;
-            gap: 1.5rem;
+            display: flex;
+            list-style: none;
+            gap: 2rem;
         }
 
         .nav-links a {
-            font-size: 1.1rem;
-            padding: 0.8rem 0;
+            text-decoration: none;
+            color: #718096;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            cursor: pointer;
         }
 
+        .nav-links a:hover {
+            color: #4299e1;
+        }
+
+        .nav-links a.active {
+            color: #2d3748;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #4299e1;
+            border-radius: 2px;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            padding-top: 120px;
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        /* Content Sections */
+        .content-section {
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            filter: blur(2px) brightness(0.95);
+            will-change: transform, opacity, filter;
+        }
+
+        .content-section.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+            position: relative;
+            filter: blur(0px) brightness(1);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: 0.15s;
+        }
+
+        .content-section.exiting {
+            opacity: 0;
+            transform: translateY(-15px) scale(1.02);
+            filter: blur(3px) brightness(1.05);
+            transition: all 0.5s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+        }
+
+        /* Home Section */
         .home-content {
-            padding: 1.5rem 0.5rem;
-            gap: 1.5rem;
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
         }
 
         .hero-content h1 {
-            font-size: 2rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-btn {
-            padding: 0.8rem 1.5rem;
-            font-size: 1rem;
+            font-size: 3.5rem;
+            font-weight: 300;
+            line-height: 1.2;
             margin-bottom: 2rem;
         }
 
+        .hero-content .greeting {
+            color: #2d3748;
+            font-weight: 400;
+        }
+
+        .hero-content .name {
+            color: #4299e1;
+            font-weight: 700;
+        }
+
+        .hero-content .role {
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .contact-btn {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 3rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .contact-btn:hover {
+            background: #3182ce;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(66, 153, 225, 0.3);
+        }
+
         .social-links {
-            gap: 1rem;
-            justify-content: center;
+            display: flex;
+            gap: 1.5rem;
         }
 
         .social-links a {
-            width: 35px;
-            height: 35px;
-            font-size: 1.3rem;
+            color: #718096;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .social-links a:hover {
+            color: #4299e1;
+            background: rgba(66, 153, 225, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Image */
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .blob-container {
-            width: 250px;
-            height: 250px;
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .blob {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: blob 8s ease-in-out infinite;
         }
 
         .profile-image {
-            width: 200px;
-            height: 200px;
-            border: 6px solid white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            z-index: 2;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
+        @keyframes blob {
+            0% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                transform: rotate(0deg);
+            }
+            50% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+                transform: rotate(180deg);
+            }
+            100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Other sections styling */
         .section-content {
-            padding: 1.5rem 0.8rem;
+            padding: 4rem;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
         }
 
         .section-content h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 2rem;
         }
 
         .section-content p {
+            font-size: 1.2rem;
+            color: #718096;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Skills specific styling */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #4299e1;
+            box-shadow: 0 10px 30px rgba(66, 153, 225, 0.1);
+        }
+
+        .skill-card h3 {
+            color: #2d3748;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card p {
             font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+            color: #718096;
         }
 
-        .skills-grid,
-        .works-grid,
-        .contact-info {
-            gap: 1.5rem;
-            margin-top: 2rem;
+        /* Works specific styling */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .skill-card,
-        .contact-card {
-            padding: 1.5rem;
+        .work-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .skill-card h3,
-        .contact-card h3 {
-            font-size: 1.1rem;
-        }
-
-        .skill-card p,
-        .contact-card p {
-            font-size: 0.9rem;
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
 
         .work-image {
-            height: 150px;
-            font-size: 1rem;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
         .work-content {
-            padding: 1.2rem;
+            padding: 1.5rem;
         }
 
         .work-content h3 {
-            font-size: 1.1rem;
+            color: #2d3748;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
         }
 
         .work-content p {
-            font-size: 0.9rem;
+            font-size: 1rem;
+            color: #718096;
+            margin: 0;
+        }
+
+        /* Contact specific styling */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(66, 153, 225, 0.1);
+        }
+
+        .contact-card h3 {
+            color: #2d3748;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            font-size: 1rem;
+            color: #4299e1;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
 
         .language-toggle {
-            padding: 0.3rem 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(66, 153, 225, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
 
         .lang-option {
-            font-size: 0.75rem;
-            padding: 0.15rem 0.3rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #718096;
+            transition: all 0.3s ease;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        .lang-option.active {
+            color: #4299e1;
+            background: rgba(66, 153, 225, 0.2);
+        }
+
+        .lang-option:hover:not(.active) {
+            color: #2d3748;
+        }
+
+        .lang-separator {
+            color: #cbd5e0;
+            font-weight: 300;
+        }
+
+        /* RTL Support */
+        body.rtl {
+            direction: rtl;
+        }
+
+        body.rtl .navbar {
+            direction: rtl;
+        }
+
+        body.rtl .nav-links {
+            direction: rtl;
+        }
+
+        body.rtl .home-content {
+            direction: rtl;
+        }
+
+        body.rtl .section-content {
+            direction: rtl;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
         }
 
         .hamburger span {
-            width: 20px;
-            height: 2px;
-        }
-    }
-
-    /* Very Small Screens (iPhone SE, etc.) */
-    @media (max-width: 375px) {
-        .main-container {
-            padding: 0.3rem;
-            padding-top: 65px;
+            width: 25px;
+            height: 3px;
+            background: #2d3748;
+            border-radius: 2px;
+            transition: all 0.3s ease;
         }
 
-        .hero-content h1 {
-            font-size: 1.7rem;
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-controls {
+                gap: 1rem;
+            }
+
+            .language-toggle {
+                padding: 0.4rem 0.8rem;
+                gap: 0.3rem;
+            }
+
+            .lang-option {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.4rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                gap: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .home-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .blob-container {
+                width: 260px;
+                height: 260px;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+                border-width: 6px;
+            }
+
+            .navbar {
+                padding: 0.75rem 1.5rem;
+            }
+
+            .section-content {
+                padding: 2rem;
+            }
+
+            .section-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-content p {
+                font-size: 1rem;
+            }
+
+            .contact-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .skills-grid,
+            .works-grid,
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            /* Make sections scrollable and allow natural height on mobile */
+            .content-section {
+                position: relative;
+                top: auto;
+                right: auto;
+                bottom: auto;
+                left: auto;
+                min-height: auto;
+                height: auto;
+                overflow-y: auto;
+            }
+
+            /* Let the card grow naturally so it doesn’t force extra space */
+            .main-card {
+                min-height: auto;
+            }
+
+            /* Reduce top padding for smaller headers */
+            .main-container {
+                padding-top: 100px;
+            }
         }
 
-        .blob-container {
-            width: 220px;
-            height: 220px;
-        }
+        /* Further tweaks for very narrow screens */
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
 
-        .profile-image {
-            width: 180px;
-            height: 180px;
-        }
+            .navbar .logo {
+                font-size: 1.25rem;
+            }
 
-        .section-content {
-            padding: 1.2rem 0.6rem;
-        }
+            .language-toggle {
+                gap: 0.25rem;
+                padding: 0.3rem 0.6rem;
+            }
 
-        .section-content h2 {
-            font-size: 1.6rem;
-        }
+            .lang-option {
+                font-size: 0.7rem;
+                padding: 0.15rem 0.3rem;
+            }
 
-        .skills-grid,
-        .works-grid,
-        .contact-info {
-            gap: 1rem;
-        }
+            .blob-container {
+                width: 220px;
+                height: 220px;
+            }
 
-        .skill-card,
-        .contact-card {
-            padding: 1.2rem;
+            .profile-image {
+                width: 170px;
+                height: 170px;
+            }
+
+            .work-image {
+                height: 150px;
+            }
+
+            .skill-card,
+            .contact-card {
+                padding: 1.5rem;
+            }
         }
-    }
-</style>
+    </style>
 </head>
 <body>
 <div class="main-container">
