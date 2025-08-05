@@ -1,870 +1,1040 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marlon - Web Designer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f0f2ff 0%, #e8ecff 100%);
-            min-height: 100vh;
-            color: #2d3748;
-        }
-
-        /* Navigation */
-        .navbar {
-            background: white;
-            padding: 2rem 4rem;
-            border-radius: 24px 24px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2d3748;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #718096;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-            cursor: pointer;
-        }
-
-        .nav-links a:hover {
-            color: #4299e1;
-        }
-
-        .nav-links a.active {
-            color: #2d3748;
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #4299e1;
-            border-radius: 2px;
-        }
-
-        /* Main Container */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            padding-top: 120px;
-        }
-
-        .main-card {
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
-            min-height: 600px;
-        }
-
-        /* Content Sections */
-        .content-section {
-            opacity: 0;
-            transform: translateY(20px) scale(0.98);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-            filter: blur(2px) brightness(0.95);
-            will-change: transform, opacity, filter;
-        }
-
-        .content-section.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: all;
-            position: relative;
-            filter: blur(0px) brightness(1);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            transition-delay: 0.15s;
-        }
-
-        .content-section.exiting {
-            opacity: 0;
-            transform: translateY(-15px) scale(1.02);
-            filter: blur(3px) brightness(1.05);
-            transition: all 0.5s cubic-bezier(0.6, 0.04, 0.98, 0.335);
-        }
-
-        /* Home Section */
-        .home-content {
-            padding: 4rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            width: 100%;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 300;
-            line-height: 1.2;
-            margin-bottom: 2rem;
-        }
-
-        .hero-content .greeting {
-            color: #2d3748;
-            font-weight: 400;
-        }
-
-        .hero-content .name {
-            color: #4299e1;
-            font-weight: 700;
-        }
-
-        .hero-content .role {
-            color: #2d3748;
-            font-weight: 600;
-        }
-
-        .contact-btn {
-            background: #4299e1;
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 3rem;
-            display: inline-block;
-            text-decoration: none;
-        }
-
-        .contact-btn:hover {
-            background: #3182ce;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(66, 153, 225, 0.3);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .social-links a {
-            color: #718096;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-        }
-
-        .social-links a:hover {
-            color: #4299e1;
-            background: rgba(66, 153, 225, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Image */
-        .hero-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .blob-container {
-            position: relative;
-            width: 400px;
-            height: 400px;
-        }
-
-        .blob {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            animation: blob 8s ease-in-out infinite;
-        }
-
-        .profile-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 320px;
-            height: 320px;
-            border-radius: 50%;
-            object-fit: cover;
-            z-index: 2;
-            border: 8px solid white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        @keyframes blob {
-            0% {
-                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-                transform: rotate(0deg);
-            }
-            50% {
-                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-                transform: rotate(180deg);
-            }
-            100% {
-                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Other sections styling */
-        .section-content {
-            padding: 4rem;
-            text-align: center;
-            width: 100%;
-            max-width: 800px;
-        }
-
-        .section-content h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 2rem;
-        }
-
-        .section-content p {
-            font-size: 1.2rem;
-            color: #718096;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        /* Skills specific styling */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-card {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: #4299e1;
-            box-shadow: 0 10px 30px rgba(66, 153, 225, 0.1);
-        }
-
-        .skill-card h3 {
-            color: #2d3748;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-card p {
-            font-size: 1rem;
-            color: #718096;
-        }
-
-        /* Works specific styling */
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .work-card {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .work-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .work-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .work-content {
-            padding: 1.5rem;
-        }
-
-        .work-content h3 {
-            color: #2d3748;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .work-content p {
-            font-size: 1rem;
-            color: #718096;
-            margin: 0;
-        }
-
-        /* Contact specific styling */
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-card {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(66, 153, 225, 0.1);
-        }
-
-        .contact-card h3 {
-            color: #2d3748;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-card p {
-            font-size: 1rem;
-            color: #4299e1;
-            margin: 0;
-            font-weight: 600;
-        }
-
-        /* Navigation Controls */
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .language-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(66, 153, 225, 0.1);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .lang-option {
-            cursor: pointer;
-            font-weight: 600;
-            color: #718096;
-            transition: all 0.3s ease;
-            padding: 0.25rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-        }
-
-        .lang-option.active {
-            color: #4299e1;
-            background: rgba(66, 153, 225, 0.2);
-        }
-
-        .lang-option:hover:not(.active) {
-            color: #2d3748;
-        }
-
-        .lang-separator {
-            color: #cbd5e0;
-            font-weight: 300;
-        }
-
-        /* RTL Support */
-        body.rtl {
-            direction: rtl;
-        }
-
-        body.rtl .navbar {
-            direction: rtl;
-        }
-
-        body.rtl .nav-links {
-            direction: rtl;
-        }
-
-        body.rtl .home-content {
-            direction: rtl;
-        }
-
-        body.rtl .section-content {
-            direction: rtl;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #2d3748;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .nav-controls {
-                gap: 1rem;
-            }
-
-            .language-toggle {
-                padding: 0.4rem 0.8rem;
-                gap: 0.3rem;
-            }
-
-            .lang-option {
-                font-size: 0.8rem;
-                padding: 0.2rem 0.4rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                padding-top: 2rem;
-                gap: 2rem;
-                transition: left 0.3s ease;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .home-content {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                padding: 1.5rem;
-                text-align: center;
-            }
-
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-
-            .blob-container {
-                width: 260px;
-                height: 260px;
-            }
-
-            .profile-image {
-                width: 200px;
-                height: 200px;
-                border-width: 6px;
-            }
-
-            .navbar {
-                padding: 0.75rem 1.5rem;
-            }
-
-            .section-content {
-                padding: 2rem;
-            }
-
-            .section-content h2 {
-                font-size: 1.8rem;
-            }
-
-            .section-content p {
-                font-size: 1rem;
-            }
-
-            .contact-btn {
-                padding: 0.75rem 1.5rem;
-                font-size: 1rem;
-            }
-
-            .skills-grid,
-            .works-grid,
-            .contact-info {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            /* Make sections scrollable and allow natural height on mobile */
-            .content-section {
-                position: relative;
-                top: auto;
-                right: auto;
-                bottom: auto;
-                left: auto;
-                min-height: auto;
-                height: auto;
-                overflow-y: auto;
-            }
-
-            /* Let the card grow naturally so it doesn’t force extra space */
-            .main-card {
-                min-height: auto;
-            }
-
-            /* Reduce top padding for smaller headers */
-            .main-container {
-                padding-top: 100px;
-            }
-        }
-
-        /* Further tweaks for very narrow screens */
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 2rem;
-                line-height: 1.2;
-            }
-
-            .navbar .logo {
-                font-size: 1.25rem;
-            }
-
-            .language-toggle {
-                gap: 0.25rem;
-                padding: 0.3rem 0.6rem;
-            }
-
-            .lang-option {
-                font-size: 0.7rem;
-                padding: 0.15rem 0.3rem;
-            }
-
-            .blob-container {
-                width: 220px;
-                height: 220px;
-            }
-
-            .profile-image {
-                width: 170px;
-                height: 170px;
-            }
-
-            .work-image {
-                height: 150px;
-            }
-
-            .skill-card,
-            .contact-card {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matar Roll - QA Engineer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f2ff 0%, #e8ecff 100%);
+      min-height: 100vh;
+      color: #2d3748;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: white;
+      padding: 2rem 4rem;
+      border-radius: 24px 24px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2d3748;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #718096;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover {
+      color: #4299e1;
+    }
+
+    .nav-links a.active {
+      color: #2d3748;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #4299e1;
+      border-radius: 2px;
+    }
+
+    /* Main Container */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      padding-top: 120px;
+    }
+
+    .main-card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+    }
+
+    /* Content Sections */
+    .content-section {
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      filter: blur(2px) brightness(0.95);
+      will-change: transform, opacity, filter;
+    }
+
+    .content-section.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+      position: relative;
+      filter: blur(0px) brightness(1);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.15s;
+    }
+
+    .content-section.exiting {
+      opacity: 0;
+      transform: translateY(-15px) scale(1.02);
+      filter: blur(3px) brightness(1.05);
+      transition: all 0.5s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    }
+
+    /* Home Section */
+    .home-content {
+      padding: 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+
+    .hero-content .greeting {
+      color: #2d3748;
+      font-weight: 400;
+    }
+
+    .hero-content .name {
+      color: #4299e1;
+      font-weight: 700;
+    }
+
+    .hero-content .role {
+      color: #2d3748;
+      font-weight: 600;
+    }
+
+    .contact-btn {
+      background: #4299e1;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 3rem;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .contact-btn:hover {
+      background: #3182ce;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(66, 153, 225, 0.3);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .social-links a {
+      color: #718096;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    .social-links a:hover {
+      color: #4299e1;
+      background: rgba(66, 153, 225, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .social-links img {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Hero Image */
+    .hero-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .blob-container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
+
+    .blob {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      animation: blob 8s ease-in-out infinite;
+    }
+
+    .profile-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      object-fit: cover;
+      z-index: 2;
+      border: 8px solid white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes blob {
+      0% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transform: rotate(0deg);
+      }
+      50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+        transform: rotate(180deg);
+      }
+      100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Other sections styling */
+    .section-content {
+      padding: 4rem;
+      text-align: center;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .section-content h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 2rem;
+    }
+
+    .section-content p {
+      font-size: 1.2rem;
+      color: #718096;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    /* Skills specific styling */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .skill-card {
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      border-color: #4299e1;
+      box-shadow: 0 10px 30px rgba(66, 153, 225, 0.1);
+    }
+
+    .skill-card h3 {
+      color: #2d3748;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card p {
+      font-size: 1rem;
+      color: #718096;
+    }
+
+    /* Experience and Education styling */
+    .experience-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 3rem;
+      text-align: left;
+    }
+
+    .experience-card {
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      padding: 2rem;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      border-left: 4px solid #4299e1;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .experience-title {
+      flex: 1;
+    }
+
+    .experience-title h3 {
+      color: #2d3748;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-title .company {
+      color: #4299e1;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .experience-date {
+      color: #718096;
+      font-weight: 600;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    .experience-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .experience-card li {
+      color: #718096;
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .experience-card li::before {
+      content: '•';
+      color: #4299e1;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* Projects specific styling */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-header {
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      padding: 1.5rem;
+      color: white;
+    }
+
+    .project-header h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-header .project-type {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-content ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .project-content li {
+      color: #718096;
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .project-content li::before {
+      content: '✓';
+      color: #4299e1;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* Contact specific styling */
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(66, 153, 225, 0.1);
+    }
+
+    .contact-card h3 {
+      color: #2d3748;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-card p {
+      font-size: 1rem;
+      color: #4299e1;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .contact-card a {
+      color: #4299e1;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Navigation Controls */
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .language-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(66, 153, 225, 0.1);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .lang-option {
+      cursor: pointer;
+      font-weight: 600;
+      color: #718096;
+      transition: all 0.3s ease;
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+    }
+
+    .lang-option.active {
+      color: #4299e1;
+      background: rgba(66, 153, 225, 0.2);
+    }
+
+    .lang-option:hover:not(.active) {
+      color: #2d3748;
+    }
+
+    .lang-separator {
+      color: #cbd5e0;
+      font-weight: 300;
+    }
+
+    /* RTL Support */
+    body.rtl {
+      direction: rtl;
+    }
+
+    body.rtl .navbar {
+      direction: rtl;
+    }
+
+    body.rtl .nav-links {
+      direction: rtl;
+    }
+
+    body.rtl .home-content {
+      direction: rtl;
+    }
+
+    body.rtl .section-content {
+      direction: rtl;
+    }
+
+    body.rtl .experience-card li::before {
+      right: 0;
+      left: auto;
+    }
+
+    body.rtl .experience-card li {
+      padding-right: 1.5rem;
+      padding-left: 0;
+    }
+
+    body.rtl .project-content li::before {
+      right: 0;
+      left: auto;
+    }
+
+    body.rtl .project-content li {
+      padding-right: 1.5rem;
+      padding-left: 0;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #2d3748;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .nav-controls {
+        gap: 1rem;
+      }
+
+      .language-toggle {
+        padding: 0.4rem 0.8rem;
+        gap: 0.3rem;
+      }
+
+      .lang-option {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.4rem;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 2rem;
+        gap: 2rem;
+        transition: left 0.3s ease;
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .home-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .blob-container {
+        width: 300px;
+        height: 300px;
+      }
+
+      .profile-image {
+        width: 240px;
+        height: 240px;
+      }
+
+      .navbar {
+        padding: 1rem 2rem;
+      }
+
+      .section-content h2 {
+        font-size: 2.2rem;
+      }
+
+      .skills-grid,
+      .projects-grid,
+      .contact-info {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .experience-date {
+        white-space: normal;
+      }
+    }
+  </style>
 </head>
 <body>
 <div class="main-container">
-    <div class="main-card">
-        <!-- Navigation -->
-        <nav class="navbar">
-            <div class="logo">Marlon</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#" data-section="home" class="active" data-en="Home" data-he="בית">Home</a></li>
-                <li><a href="#" data-section="about" data-en="About" data-he="אודות">About</a></li>
-                <li><a href="#" data-section="skills" data-en="Skills" data-he="כישורים">Skills</a></li>
-                <li><a href="#" data-section="works" data-en="Works" data-he="עבודות">Works</a></li>
-                <li><a href="#" data-section="contact" data-en="Contact" data-he="צור קשר">Contact</a></li>
-            </ul>
-            <div class="nav-controls">
-                <div class="language-toggle" id="languageToggle">
-                    <span class="lang-option active" data-lang="en">EN</span>
-                    <span class="lang-separator">|</span>
-                    <span class="lang-option" data-lang="he">עב</span>
-                </div>
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Home Section -->
-        <div class="content-section active" id="home-section">
-            <div class="home-content">
-                <div class="hero-content">
-                    <h1>
-                        <span class="greeting" data-en="Hi," data-he="שלום,">Hi,</span><br>
-                        <span class="greeting" data-en="I'm " data-he="אני ">I'm </span><span class="name">Marlon</span><br>
-                        <span class="role" data-en="Web Designer" data-he="מעצב אתרים">Web Designer</span>
-                    </h1>
-                    <a href="#" class="contact-btn" data-section="contact" data-en="Contact" data-he="צור קשר">Contact</a>
-                    <div class="social-links">
-                        <a href="https://linkedin.com" target="_blank" rel="noopener" title="LinkedIn" class="logo-button">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
-                        </a>
-                        <a href="https://github.com" target="_blank" rel="noopener" title="GitHub" class="logo-button">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="blob-container">
-                        <div class="blob"></div>
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Marlon" class="profile-image">
-                    </div>
-                </div>
-            </div>
+  <div class="main-card">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo" data-en="Matar Roll" data-he="מטר רול">Matar Roll</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" data-section="home" class="active" data-en="Home" data-he="בית">Home</a></li>
+        <li><a href="#" data-section="about" data-en="About" data-he="אודות">About</a></li>
+        <li><a href="#" data-section="skills" data-en="Skills" data-he="כישורים">Skills</a></li>
+        <li><a href="#" data-section="experience" data-en="Experience" data-he="ניסיון">Experience</a></li>
+        <li><a href="#" data-section="projects" data-en="Projects" data-he="פרויקטים">Projects</a></li>
+        <li><a href="#" data-section="contact" data-en="Contact" data-he="צור קשר">Contact</a></li>
+      </ul>
+      <div class="nav-controls">
+        <div class="language-toggle" id="languageToggle">
+          <span class="lang-option active" data-lang="en">EN</span>
+          <span class="lang-separator">|</span>
+          <span class="lang-option" data-lang="he">עב</span>
         </div>
-
-        <!-- About Section -->
-        <div class="content-section" id="about-section">
-            <div class="section-content">
-                <h2 data-en="About Me" data-he="אודותיי">About Me</h2>
-                <p data-en="I'm a passionate web designer with over 5 years of experience creating beautiful, functional, and user-centered digital experiences. My journey in design started with a curiosity about how things work and evolved into a love for crafting interfaces that not only look great but also solve real problems." data-he="אני מעצב אתרים נלהב עם למעלה מ-5 שנות ניסיון ביצירת חוויות דיגיטליות יפות, פונקציונליות וממוקדות משתמש. המסע שלי בעיצוב התחיל מסקרנות לגבי איך דברים עובדים והתפתח לאהבה ליצירת ממשקים שלא רק נראים נהדר אלא גם פותרים בעיות אמיתיות.">I'm a passionate web designer with over 5 years of experience creating beautiful, functional, and user-centered digital experiences. My journey in design started with a curiosity about how things work and evolved into a love for crafting interfaces that not only look great but also solve real problems.</p>
-                <p data-en="I believe that great design is invisible - it should feel natural and intuitive to users while achieving business goals. I specialize in modern web technologies, responsive design, and creating seamless user experiences that engage and delight." data-he="אני מאמין שעיצוב נהדר הוא בלתי נראה - הוא צריך להרגיש טבעי ואינטואיטיבי למשתמשים תוך השגת יעדים עסקיים. אני מתמחה בטכנולוגיות אינטרנט מודרניות, עיצוב רספונסיבי ויצירת חוויות משתמש חלקות שמעסיקות ומשמחות.">I believe that great design is invisible - it should feel natural and intuitive to users while achieving business goals. I specialize in modern web technologies, responsive design, and creating seamless user experiences that engage and delight.</p>
-                <p data-en="When I'm not designing, you can find me exploring new technologies, sketching ideas, or enjoying a good cup of coffee while reading about the latest design trends." data-he="כשאני לא מעצב, תוכלו למצוא אותי חוקר טכנולוגיות חדשות, משרטט רעיונות, או נהנה מכוס קפה טובה תוך קריאה על טרנדים עיצוביים חדשים.">When I'm not designing, you can find me exploring new technologies, sketching ideas, or enjoying a good cup of coffee while reading about the latest design trends.</p>
-            </div>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
+      </div>
+    </nav>
 
-        <!-- Skills Section -->
-        <div class="content-section" id="skills-section">
-            <div class="section-content">
-                <h2 data-en="My Skills" data-he="הכישורים שלי">My Skills</h2>
-                <p data-en="I combine creativity with technical expertise to deliver exceptional web experiences." data-he="אני משלב יצירתיות עם מומחיות טכנית כדי לספק חוויות אינטרנט יוצאות דופן.">I combine creativity with technical expertise to deliver exceptional web experiences.</p>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <h3 data-en="UI/UX Design" data-he="עיצוב UI/UX">UI/UX Design</h3>
-                        <p data-en="Creating intuitive and visually appealing user interfaces with a focus on user experience and accessibility." data-he="יצירת ממשקי משתמש אינטואיטיביים ומושכים ויזואלית עם התמקדות בחוויית משתמש ונגישות.">Creating intuitive and visually appealing user interfaces with a focus on user experience and accessibility.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 data-en="Frontend Development" data-he="פיתוח Frontend">Frontend Development</h3>
-                        <p data-en="Building responsive websites using HTML5, CSS3, JavaScript, and modern frameworks like React and Vue.js." data-he="בניית אתרים רספונסיביים באמצעות HTML5, CSS3, JavaScript ופריימוורקים מודרניים כמו React ו-Vue.js.">Building responsive websites using HTML5, CSS3, JavaScript, and modern frameworks like React and Vue.js.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 data-en="Responsive Design" data-he="עיצוב רספונסיבי">Responsive Design</h3>
-                        <p data-en="Ensuring seamless experiences across all devices with mobile-first design approaches and flexible layouts." data-he="הבטחת חוויות חלקות בכל המכשירים עם גישות עיצוב mobile-first ופריסות גמישות.">Ensuring seamless experiences across all devices with mobile-first design approaches and flexible layouts.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 data-en="Brand Identity" data-he="זהות מותג">Brand Identity</h3>
-                        <p data-en="Developing cohesive visual identities that communicate brand values and create memorable impressions." data-he="פיתוח זהויות ויזואליות קוהרנטיות שמתקשרות ערכי מותג ויוצרות רושם בלתי נשכח.">Developing cohesive visual identities that communicate brand values and create memorable impressions.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Home Section -->
+    <div class="content-section active" id="home-section">
+      <div class="home-content">
+        <div class="hero-content">
+          <h1>
+            <span class="greeting" data-en="Hi," data-he="שלום,">Hi,</span><br>
+            <span class="greeting" data-en="I'm " data-he="אני ">I'm </span><span class="name" data-en="Matar Roll" data-he="מטר רול">Matar Roll</span><br>
+            <span class="role" data-en="QA Engineer" data-he="מהנדס QA">QA Engineer</span>
+          </h1>
+          <a href="#" class="contact-btn" data-section="contact" data-en="Contact Me" data-he="צור קשר">Contact Me</a>
+          <div class="social-links">
+            <a href="https://linkedin.com/in/mataroll" target="_blank" rel="noopener" title="LinkedIn">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
+            </a>
+            <a href="https://github.com/mataroll" target="_blank" rel="noopener" title="GitHub">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+            </a>
+            <a href="https://mataroll.com" target="_blank" rel="noopener" title="Portfolio Website">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </a>
+          </div>
         </div>
-
-        <!-- Works Section -->
-        <div class="content-section" id="works-section">
-            <div class="section-content">
-                <h2>My Works</h2>
-                <p>Here are some of my recent projects that showcase my design and development capabilities.</p>
-                <div class="works-grid">
-                    <div class="work-card">
-                        <div class="work-image">E-Commerce Platform</div>
-                        <div class="work-content">
-                            <h3>Modern E-Commerce</h3>
-                            <p>A complete e-commerce solution with seamless checkout experience and mobile-first design.</p>
-                        </div>
-                    </div>
-                    <div class="work-card">
-                        <div class="work-image">SaaS Dashboard</div>
-                        <div class="work-content">
-                            <h3>Analytics Dashboard</h3>
-                            <p>Clean and intuitive dashboard for data visualization with real-time updates and interactive charts.</p>
-                        </div>
-                    </div>
-                    <div class="work-card">
-                        <div class="work-image">Mobile App</div>
-                        <div class="work-content">
-                            <h3>Fitness App UI</h3>
-                            <p>Mobile application design focused on user engagement and motivational user experience.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-image">
+          <div class="blob-container">
+            <div class="blob"></div>
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face" alt="Matar Roll" class="profile-image">
+          </div>
         </div>
-
-        <!-- Contact Section -->
-        <div class="content-section" id="contact-section">
-            <div class="section-content">
-                <h2>Get In Touch</h2>
-                <p>I'm always interested in new opportunities and exciting projects. Let's create something amazing together!</p>
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <h3>Email</h3>
-                        <p>marlon@example.com</p>
-                    </div>
-                    <div class="contact-card">
-                        <h3>Phone</h3>
-                        <p>+1 (555) 123-4567</p>
-                    </div>
-                    <div class="contact-card">
-                        <h3>Location</h3>
-                        <p>New York, NY</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <!-- About Section -->
+    <div class="content-section" id="about-section">
+      <div class="section-content">
+        <h2 data-en="About Me" data-he="אודותיי">About Me</h2>
+        <p data-en="I am an experienced math teacher who decided to switch occupation to QA engineering. I've got a keen eye for details, a passion for testing, and I find great enjoyment in finding bugs and errors and seeing them fixed." data-he="אני מורה מתמטיקה מנוסה שהחליט לעבור לתחום הנדסת QA. יש לי עין חדה לפרטים, תשוקה לבדיקות, ואני נהנה מאוד למצוא באגים ושגיאות ולראות אותם מתוקנים.">I am an experienced math teacher who decided to switch occupation to QA engineering. I've got a keen eye for details, a passion for testing, and I find great enjoyment in finding bugs and errors and seeing them fixed.</p>
+        <p data-en="My background in mathematics has given me strong analytical and problem-solving skills, which translate perfectly to software testing. I approach each testing scenario methodically, ensuring comprehensive coverage and thorough documentation." data-he="הרקע שלי במתמטיקה נתן לי כישורי ניתוח ופתרון בעיות חזקים, שמתרגמים בצורה מושלמת לבדיקת תוכנה. אני ניגש לכל תרחיש בדיקה בצורה שיטתית, מבטיח כיסוי מקיף ותיעוד יסודי.">My background in mathematics has given me strong analytical and problem-solving skills, which translate perfectly to software testing. I approach each testing scenario methodically, ensuring comprehensive coverage and thorough documentation.</p>
+        <p data-en="My hobbies include PC and tabletop gaming, table tennis, hiking and spending time with my friends and family. These activities help me stay creative and maintain a healthy work-life balance." data-he="התחביבים שלי כוללים משחקי מחשב ומשחקי קופסא, טניס שולחן, טיולים ובילוי עם החברים והמשפחה שלי. הפעילויות האלה עוזרות לי להישאר יצירתי ולשמור על איזון בריא בין עבודה לחיים.">My hobbies include PC and tabletop gaming, table tennis, hiking and spending time with my friends and family. These activities help me stay creative and maintain a healthy work-life balance.</p>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="content-section" id="skills-section">
+      <div class="section-content">
+        <h2 data-en="Key Skills" data-he="כישורים מרכזיים">Key Skills</h2>
+        <p data-en="I combine analytical thinking with modern testing tools and methodologies to ensure software quality." data-he="אני משלב חשיבה אנליטית עם כלי בדיקה ומתודולוgiות מודרניות כדי להבטיח איכות תוכנה.">I combine analytical thinking with modern testing tools and methodologies to ensure software quality.</p>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3 data-en="API Testing" data-he="בדיקת API">API Testing</h3>
+            <p data-en="Proficient in Postman for API testing, validation, and automation. Experienced in testing REST APIs and verifying data integrity." data-he="מיומן ב-Postman לבדיקת API, אימות ואוטומציה. מנוסה בבדיקת REST APIs ואימות שלמות נתונים.">Proficient in Postman for API testing, validation, and automation. Experienced in testing REST APIs and verifying data integrity.</p>
+          </div>
+          <div class="skill-card">
+            <h3 data-en="Test Management" data-he="ניהול בדיקות">Test Management</h3>
+            <p data-en="Expert in Jira and Xray for test case management, bug tracking, and project coordination. Skilled in creating comprehensive test documentation." data-he="מומחה ב-Jira ו-Xray לניהול מקרי בדיקה, מעקב באגים ותיאום פרויקטים. מיומן ביצירת תיעוד בדיקות מקיף.">Expert in Jira and Xray for test case management, bug tracking, and project coordination. Skilled in creating comprehensive test documentation.</p>
+          </div>
+          <div class="skill-card">
+            <h3 data-en="Programming" data-he="תכנות">Programming</h3>
+            <p data-en="Knowledgeable in Python and C programming languages, with experience in automated testing scripts and test data generation." data-he="בעל ידע בשפות תכנות Python ו-C, עם ניסיון בסקריפטים לבדיקות אוטומטיות ויצירת נתוני בדיקה.">Knowledgeable in Python and C programming languages, with experience in automated testing scripts and test data generation.</p>
+          </div>
+          <div class="skill-card">
+            <h3 data-en="Testing Methodologies" data-he="מתודולוגיות בדיקה">Testing Methodologies</h3>
+            <p data-en="Experienced in Agile and Scrum methodologies, with expertise in various testing types including Smoke, Sanity, Boundary, and Negative testing." data-he="מנוסה במתודולוגיות Agile ו-Scrum, עם מומחיות בסוגי בדיקה שונים כולל Smoke, Sanity, Boundary ו-Negative.">Experienced in Agile and Scrum methodologies, with expertise in various testing types including Smoke, Sanity, Boundary, and Negative testing.</p>
+          </div>
+          <div class="skill-card">
+            <h3 data-en="Database & SQL" data-he="מסדי נתונים ו-SQL">Database & SQL</h3>
+            <p data-en="Proficient in SQL for database testing, data validation, and backend verification. Can write complex queries for test data setup and validation." data-he="מיומן ב-SQL לבדיקת מסדי נתונים, אימות נתונים ואימות backend. יכול לכתוב שאילתות מורכבות להכנת ואימות נתוני בדיקה.">Proficient in SQL for database testing, data validation, and backend verification. Can write complex queries for test data setup and validation.</p>
+          </div>
+          <div class="skill-card">
+            <h3 data-en="Load Testing" data-he="בדיקות עומס">Load Testing</h3>
+            <p data-en="Experience in performance and load testing to ensure applications can handle expected user loads and identify bottlenecks." data-he="ניסיון בבדיקות ביצועים ועומס כדי להבטיח שאפליקציות יכולות להתמודד עם עומסי משתמשים צפויים ולזהות צווארי בקבוק.">Experience in performance and load testing to ensure applications can handle expected user loads and identify bottlenecks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="content-section" id="experience-section">
+      <div class="section-content">
+        <h2 data-en="Work Experience" data-he="ניסיון תעסוקתי">Work Experience</h2>
+        <div class="experience-grid">
+          <div class="experience-card">
+            <div class="experience-header">
+              <div class="experience-title">
+                <h3 data-en="Math Teacher" data-he="מורה מתמטיקה">Math Teacher</h3>
+                <div class="company" data-en="Brener Middle School, Petah Tikva" data-he="חטיבת הביניים ברנר, פתח תקווה">Brener Middle School, Petah Tikva</div>
+              </div>
+              <div class="experience-date" data-en="2021 - 2025" data-he="2025 - 2021">2021 - 2025</div>
+            </div>
+            <ul>
+              <li data-en="Teaching over 200 students in grades 7th-9th" data-he="הוראה ללמעלה מ-200 תלמידים בכיתות ז'-ט'">Teaching over 200 students in grades 7th-9th</li>
+              <li data-en="Improved student scores by 20%" data-he="שיפור ציונים ב-20%">Improved student scores by 20%</li>
+              <li data-en="Earned strong parent and student trust" data-he="זכיתי באמון חזק של הורים ותלמידים">Earned strong parent and student trust</li>
+            </ul>
+          </div>
+
+          <div class="experience-card">
+            <div class="experience-header">
+              <div class="experience-title">
+                <h3 data-en="Senior Customer Service Agent" data-he="נציג שירות לקוחות בכיר">Senior Customer Service Agent</h3>
+                <div class="company" data-en="AIG Insurance" data-he="ביטוח AIG">AIG Insurance</div>
+              </div>
+              <div class="experience-date" data-en="2019 - 2021" data-he="2021 - 2019">2019 - 2021</div>
+            </div>
+            <ul>
+              <li data-en="Mentored 20+ new agents and handled up to 60 client calls daily" data-he="הדרכת למעלה מ-20 נציגים חדשים וטיפול ביותר מ-60 שיחות לקוחות יומיות">Mentored 20+ new agents and handled up to 60 client calls daily</li>
+              <li data-en="Resolved customer issues with 95% satisfaction rate" data-he="פתרון בעיות לקוחות עם 95% שביעות רצון">Resolved customer issues with 95% satisfaction rate</li>
+              <li data-en="Developed strong communication and problem-solving skills" data-he="פיתוח כישורי תקשורת ופתרון בעיות חזקים">Developed strong communication and problem-solving skills</li>
+            </ul>
+          </div>
+
+          <div class="experience-card">
+            <div class="experience-header">
+              <div class="experience-title">
+                <h3 data-en="Iron Dome Combat Soldier" data-he="חייל קרבי כיפת ברזל">Iron Dome Combat Soldier</h3>
+                <div class="company" data-en="Israeli Air Force, IDF" data-he="חיל האוויר, צה״ל">Israeli Air Force, IDF</div>
+              </div>
+              <div class="experience-date" data-en="2017 - 2019" data-he="2019 - 2017">2017 - 2019</div>
+            </div>
+            <ul>
+              <li data-en="Deployed advanced weapon systems in operational missions" data-he="הפעלת מערכות נשק מתקדמות במשימות מבצעיות">Deployed advanced weapon systems in operational missions</li>
+              <li data-en="Maintained and fixed a varied range of technical errors and failures" data-he="תחזוקה ותיקון מגוון רחב של שגיאות וכשלים טכניים">Maintained and fixed a varied range of technical errors and failures</li>
+              <li data-en="Worked with outside contractors like Elbit, Rafael, Elta" data-he="עבודה עם קבלנים חיצוניים כמו אלביט, רפאל, אלתא">Worked with outside contractors like Elbit, Rafael, Elta</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 data-en="Education" data-he="השכלה" style="margin-top: 4rem;">Education</h2>
+        <div class="experience-grid">
+          <div class="experience-card">
+            <div class="experience-header">
+              <div class="experience-title">
+                <h3 data-en="QA Engineer Course" data-he="קורס בודקי תוכנה">QA Engineer Course</h3>
+                <div class="company" data-en="HackerU - 315 Hours" data-he="האקריו - 315 שעות">HackerU - 315 Hours</div>
+              </div>
+              <div class="experience-date">2025</div>
+            </div>
+          </div>
+
+          <div class="experience-card">
+            <div class="experience-header">
+              <div class="experience-title">
+                <h3 data-en="CS50 Python and C Programming" data-he="קורס תכנות פייתון וסי">CS50 Python and C Programming</h3>
+                <div class="company" data-en="EDX - 300 Hours" data-he="300 שעות">EDX - 300 Hours</div>
+              </div>
+              <div class="experience-date">2024</div>
+            </div>
+          </div>
+
+          <div class="experience-card">
+            <div class="experience-header">
+              <div class="experience-title">
+                <h3 data-en="High School Diploma" data-he="תיכון בן צבי">High School Diploma</h3>
+                <div class="company" data-en="BenZvi High School - High GPA, 5 units in Math and Computer Science" data-he="ממוצע גבוה, 5 יחידות במתמטיקה ומדעי המחשב">BenZvi High School - High GPA, 5 units in Math and Computer Science</div>
+              </div>
+              <div class="experience-date" data-en="2014 - 2017" data-he="2017 - 2014">2014 - 2017</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="content-section" id="projects-section">
+      <div class="section-content">
+        <h2 data-en="Projects" data-he="פרויקטים">Projects</h2>
+        <p data-en="Here are some of my key testing projects that demonstrate my QA skills and methodologies." data-he="הנה כמה מפרויקטי הבדיקה המרכזיים שלי שמדגימים את כישורי ה-QA והמתודולוגיות שלי.">Here are some of my key testing projects that demonstrate my QA skills and methodologies.</p>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <h3 data-en="Facebook Web Testing" data-he="בדיקת אתר פייסבוק">Facebook Web Testing</h3>
+              <div class="project-type" data-en="Web Application Testing" data-he="בדיקת אפליקציית אינטרנט">Web Application Testing</div>
+            </div>
+            <div class="project-content">
+              <ul>
+                <li data-en="Served as Scrum Master in a group project for testing facebook.com" data-he="כיהנתי כמנהל סקראם בפרויקט קבוצתי לבדיקת facebook.com">Served as Scrum Master in a group project for testing facebook.com</li>
+                <li data-en="Created comprehensive STP, STD, and STR documentation" data-he="יצירת תיעוד מקיף של STP, STD ו-STR">Created comprehensive STP, STD, and STR documentation</li>
+                <li data-en="Found and reported 12 bugs to Facebook development team" data-he="מצאנו ודיווחנו על 12 באגים לצוות הפיתוח של פייסבוק">Found and reported 12 bugs to Facebook development team</li>
+                <li data-en="Used DevTools throughout testing for bug verification and recreation" data-he="השתמשנו ב-DevTools לאורך הבדיקה לאימות ויצירה מחדש של באגים">Used DevTools throughout testing for bug verification and recreation</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3 data-en="Waze Mobile App Testing" data-he="בדיקת אפליקציית וויז">Waze Mobile App Testing</h3>
+              <div class="project-type" data-en="Mobile Application Testing" data-he="בדיקת אפליקציה ניידת">Mobile Application Testing</div>
+            </div>
+            <div class="project-content">
+              <ul>
+                <li data-en="Personal project testing Waze mobile app on iOS and Android" data-he="פרויקט אישי לבדיקת אפליקציית Waze ב-iOS ו-Android">Personal project testing Waze mobile app on iOS and Android</li>
+                <li data-en="Created detailed STP, STD and STR documentation" data-he="יצירת תיעוד מפורט של STP, STD ו-STR">Created detailed STP, STD and STR documentation</li>
+                <li data-en="Performed Smoke, Sanity, Interface, Boundary and Negative testing" data-he="ביצוע בדיקות Smoke, Sanity, Interface, Boundary ו-Negative">Performed Smoke, Sanity, Interface, Boundary and Negative testing</li>
+                <li data-en="Identified and reported multiple bugs to development team" data-he="זיהוי ודיווח על מספר באגים לצוות הפיתוח">Identified and reported multiple bugs to development team</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="content-section" id="contact-section">
+      <div class="section-content">
+        <h2 data-en="Get In Touch" data-he="צור קשר">Get In Touch</h2>
+        <p data-en="I'm always interested in new QA opportunities and exciting projects. Let's discuss how I can help ensure your software quality!" data-he="אני תמיד מעוניין בהזדמנויות QA חדשות ופרויקטים מרגשים. בואו נדבר על איך אני יכול לעזור להבטיח את איכות התוכנה שלכם!">I'm always interested in new QA opportunities and exciting projects. Let's discuss how I can help ensure your software quality!</p>
+        <div class="contact-info">
+          <div class="contact-card">
+            <h3 data-en="Email" data-he="אימייל">Email</h3>
+            <p><a href="mailto:mataroll123@gmail.com">mataroll123@gmail.com</a></p>
+          </div>
+          <div class="contact-card">
+            <h3 data-en="Phone" data-he="טלפון">Phone</h3>
+            <p><a href="tel:+972549000077">054-9000077</a></p>
+          </div>
+          <div class="contact-card">
+            <h3 data-en="LinkedIn" data-he="לינקדאין">LinkedIn</h3>
+            <p><a href="https://linkedin.com/in/mataroll" target="_blank">linkedin.com/in/mataroll</a></p>
+          </div>
+          <div class="contact-card">
+            <h3 data-en="GitHub" data-he="גיטהאב">GitHub</h3>
+            <p><a href="https://github.com/mataroll" target="_blank">github.com/mataroll</a></p>
+          </div>
+          <div class="contact-card">
+            <h3 data-en="Website" data-he="אתר אינטרנט">Website</h3>
+            <p><a href="https://mataroll.com" target="_blank">mataroll.com</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-    // Language toggle functionality
-    const languageToggle = document.getElementById('languageToggle');
-    let currentLang = 'en';
+  // Language toggle functionality
+  const languageToggle = document.getElementById('languageToggle');
+  let currentLang = 'en';
 
-    languageToggle.addEventListener('click', (e) => {
-        if (e.target.classList.contains('lang-option')) {
-            const selectedLang = e.target.getAttribute('data-lang');
-            if (selectedLang === currentLang) return;
+  languageToggle.addEventListener('click', (e) => {
+    if (e.target.classList.contains('lang-option')) {
+      const selectedLang = e.target.getAttribute('data-lang');
+      if (selectedLang === currentLang) return;
 
-            currentLang = selectedLang;
+      currentLang = selectedLang;
 
-            // Update toggle button states
-            document.querySelectorAll('.lang-option').forEach(option => {
-                option.classList.remove('active');
-            });
-            e.target.classList.add('active');
+      // Update toggle button states
+      document.querySelectorAll('.lang-option').forEach(option => {
+        option.classList.remove('active');
+      });
+      e.target.classList.add('active');
 
-            // Update body direction for RTL
-            if (selectedLang === 'he') {
-                document.body.classList.add('rtl');
-            } else {
-                document.body.classList.remove('rtl');
-            }
+      // Update body direction for RTL
+      if (selectedLang === 'he') {
+        document.body.classList.add('rtl');
+      } else {
+        document.body.classList.remove('rtl');
+      }
 
-            // Update all translatable elements
-            document.querySelectorAll('[data-en][data-he]').forEach(element => {
-                const text = element.getAttribute(`data-${selectedLang}`);
-                if (text) {
-                    element.textContent = text;
-                }
-            });
+      // Update all translatable elements
+      document.querySelectorAll('[data-en][data-he]').forEach(element => {
+        const text = element.getAttribute(`data-${selectedLang}`);
+        if (text) {
+          element.textContent = text;
         }
-    });
+      });
+    }
+  });
 
-    // Mobile menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
 
-    // Navigation functionality with smooth transitions
-    let isTransitioning = false;
+  // Navigation functionality with smooth transitions
+  let isTransitioning = false;
 
-    document.querySelectorAll('.nav-links a, .contact-btn').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
+  document.querySelectorAll('.nav-links a, .contact-btn').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
 
-            // Prevent multiple clicks during transition
-            if (isTransitioning) return;
+      // Prevent multiple clicks during transition
+      if (isTransitioning) return;
 
-            // Close mobile menu
-            navLinks.classList.remove('active');
+      // Close mobile menu
+      navLinks.classList.remove('active');
 
-            // Get target section
-            const targetSection = link.getAttribute('data-section');
-            if (!targetSection) return;
+      // Get target section
+      const targetSection = link.getAttribute('data-section');
+      if (!targetSection) return;
 
-            // Check if already on this section
-            const currentActive = document.querySelector('.content-section.active');
-            const targetElement = document.getElementById(targetSection + '-section');
-            if (currentActive === targetElement) return;
+      // Check if already on this section
+      const currentActive = document.querySelector('.content-section.active');
+      const targetElement = document.getElementById(targetSection + '-section');
+      if (currentActive === targetElement) return;
 
-            isTransitioning = true;
+      isTransitioning = true;
 
-            // Update active nav link (only for nav links, not contact button)
-            if (link.closest('.nav-links')) {
-                document.querySelectorAll('.nav-links a').forEach(navLink => {
-                    navLink.classList.remove('active');
-                });
-                link.classList.add('active');
-            }
-
-            // Add exiting class to current section
-            if (currentActive) {
-                currentActive.classList.add('exiting');
-            }
-
-            // Wait for exit animation, then switch
-            setTimeout(() => {
-                // Hide all content sections
-                document.querySelectorAll('.content-section').forEach(section => {
-                    section.classList.remove('active', 'exiting');
-                });
-
-                // Show target section
-                if (targetElement) {
-                    targetElement.classList.add('active');
-                }
-
-                // Reset transition lock after entrance animation
-                setTimeout(() => {
-                    isTransitioning = false;
-                }, 500);
-            }, 250);
+      // Update active nav link (only for nav links, not contact button)
+      if (link.closest('.nav-links')) {
+        document.querySelectorAll('.nav-links a').forEach(navLink => {
+          navLink.classList.remove('active');
         });
+        link.classList.add('active');
+      }
+
+      // Add exiting class to current section
+      if (currentActive) {
+        currentActive.classList.add('exiting');
+      }
+
+      // Wait for exit animation, then switch
+      setTimeout(() => {
+        // Hide all content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+          section.classList.remove('active', 'exiting');
+        });
+
+        // Show target section
+        if (targetElement) {
+          targetElement.classList.add('active');
+        }
+
+        // Reset transition lock after entrance animation
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 500);
+      }, 250);
     });
+  });
 </script>
 </body>
 </html>
