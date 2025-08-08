@@ -18,6 +18,15 @@
             color: #2d3748;
         }
 
+        /* Prevent background interaction when menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        body.menu-open .main-container {
+            pointer-events: none;
+        }
+
         /* Navigation */
         .navbar {
             background: white;
@@ -26,6 +35,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            z-index: 100001;
         }
 
         .logo {
@@ -72,10 +83,12 @@
 
         /* Main Container */
         .main-container {
-            max-width: 1200px;
+            max-width: 90vw;
+            max-height: 100vh;
             margin: 0 auto;
             padding: 2rem;
             padding-top: 120px;
+            overflow-y: auto;
         }
 
         .main-card {
@@ -585,7 +598,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: brightness(0) invert(1);
         }
 
         .project-header .project-info {
@@ -775,6 +787,8 @@
             flex-direction: column;
             cursor: pointer;
             gap: 4px;
+            z-index: 10002;
+            position: relative;
         }
 
         .hamburger span {
@@ -807,22 +821,36 @@
 
             .nav-links {
                 position: fixed;
-                top: 80px;
+                top: 0;
                 left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
+                width: 100vw;
+                height: 100vh;
+                background: white;
                 flex-direction: column;
-                justify-content: flex-start;
+                justify-content: center;
                 align-items: center;
-                padding-top: 2rem;
-                gap: 2rem;
+                gap: 3rem;
                 transition: left 0.3s ease;
+                z-index: 10000;
+                pointer-events: all;
+                padding-top: 100px;
             }
 
             .nav-links.active {
                 left: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #2d3748;
+                padding: 1rem;
+            }
+
+            .nav-links a:hover {
+                color: #4299e1;
+                background: rgba(66, 153, 225, 0.1);
+                border-radius: 12px;
             }
 
             .home-content {
@@ -942,10 +970,10 @@
 
                     <div class="social-links">
                         <a href="https://www.linkedin.com/in/matar-roll-b180ba36b/" target="_blank" rel="noopener" title="LinkedIn">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
+                            <img src="logos/linkedin.png" alt="LinkedIn">
                         </a>
                         <a href="https://github.com/mataroll" target="_blank" rel="noopener" title="GitHub">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                            <img src="logos/github.png" alt="GitHub">
                         </a>
                         <div class="cv-dropdown">
                             <button class="cv-btn" id="cvBtn" title="Download CV">
@@ -961,7 +989,7 @@
                 <div class="hero-image">
                     <div class="blob-container">
                         <div class="blob"></div>
-                        <img src="https://matarroll.github.io/logos/photo.jpeg" alt="Matar Roll" class="profile-image">
+                        <img src="logos/photo.jpeg" alt="Matar Roll" class="profile-image">
                     </div>
                 </div>
             </div>
@@ -981,7 +1009,7 @@
         <div class="content-section" id="skills-section">
             <div class="section-content">
                 <h2 data-en="Key Skills" data-he="כישורים מרכזיים">Key Skills</h2>
-                <p data-en="I combine analytical thinking with modern testing tools and methodologies to ensure software quality." data-he="אני משלב חשיבה אנליטית עם כלי בדיקה ומתודולוgiות מודרניות כדי להבטיח איכות תוכנה.">I combine analytical thinking with modern testing tools and methodologies to ensure software quality.</p>
+                <p data-en="I combine analytical thinking with modern testing tools and methodologies to ensure software quality." data-he="אני משלב חשיבה אנליטית עם כלי בדיקה ומתודולוגיות מודרניות כדי להבטיח איכות תוכנה.">I combine analytical thinking with modern testing tools and methodologies to ensure software quality.</p>
                 <div class="skills-grid">
                     <div class="skill-card">
                         <h3 data-en="API Testing" data-he="בדיקת API">API Testing</h3>
@@ -1145,7 +1173,7 @@
                     <div class="project-card">
                         <div class="project-header">
                             <div class="project-logo">
-                                <img src="logos/facebook.png" alt="Facebook Logo" class="logo">
+                                <img src="logos/facebook.png" alt="facebook" title="facebook">
                             </div>
                             <div class="project-info">
                                 <h3 data-en="Facebook Web Testing" data-he="בדיקת אתר פייסבוק">Facebook Web Testing</h3>
@@ -1166,7 +1194,7 @@
                     <div class="project-card">
                         <div class="project-header">
                             <div class="project-logo">
-                                <img src="logos/waze.png" alt="Waze Logo" class="logo">
+                                <img src="logos/waze.png" alt="waze" title="waze">
                             </div>
                             <div class="project-info">
                                 <h3 data-en="Waze Mobile App Testing" data-he="בדיקת אפליקציית וויז">Waze Mobile App Testing</h3>
@@ -1279,6 +1307,15 @@
 
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    });
+
+    // Close menu when clicking on a nav link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
     });
 
     // Navigation functionality with smooth transitions
@@ -1293,6 +1330,7 @@
 
             // Close mobile menu
             navLinks.classList.remove('active');
+            document.body.classList.remove('menu-open');
 
             // Get target section
             const targetSection = link.getAttribute('data-section');
