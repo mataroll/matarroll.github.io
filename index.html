@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matar Roll - QA Engineer</title>
+    <title>Matar Roll - Software & AI Developer</title>
+    <meta name="description" content="Matar Roll: Software & AI Developer. Claude API chatbots, Python, Redis, Google Cloud. 1.6M+ monthly users at Algomedia.">
     <style>
         * {
             margin: 0;
@@ -48,7 +49,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 1.25rem;
         }
 
         .nav-links a {
@@ -916,6 +917,29 @@
                 white-space: normal;
             }
         }
+
+        /* Project extras */
+        .project-emoji {
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        .wip-badge {
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            background: #fefcbf;
+            color: #975a16;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -927,11 +951,12 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#" data-section="home" class="active" data-en="Home" data-he="בית">Home</a></li>
                 <li><a href="#" data-section="about" data-en="About" data-he="אודות">About</a></li>
-                <li><a href="#" data-section="skills" data-en="Skills" data-he="כישורים">Skills</a></li>
                 <li><a href="#" data-section="experience" data-en="Experience" data-he="ניסיון">Experience</a></li>
+                <li><a href="#" data-section="projects" data-en="Projects" data-he="פרויקטים">Projects</a></li>
+                <li><a href="#" data-section="skills" data-en="Skills" data-he="כישורים">Skills</a></li>
                 <li><a href="#" data-section="tools" data-en="Tools" data-he="כלים">Tools</a></li>
                 <li><a href="#" data-section="education" data-en="Education" data-he="השכלה">Education</a></li>
-                <li><a href="#" data-section="projects" data-en="Projects" data-he="פרויקטים">Projects</a></li>
+                <li><a href="#" data-section="contact" data-en="Contact" data-he="צור קשר">Contact</a></li>
             </ul>
             <div class="nav-controls">
                 <div class="language-toggle" id="languageToggle">
@@ -954,7 +979,7 @@
                     <h1>
                         <span class="greeting" data-en="Hi," data-he="שלום,">Hi,</span><br>
                         <span class="greeting" data-en="I'm " data-he="אני ">I'm </span><span class="name" data-en="Matar Roll" data-he="מטר רול">Matar Roll</span><br>
-                        <span class="role" data-en="QA Engineer" data-he="מהנדס QA">QA Engineer</span>
+                        <span class="role" data-en="Software & AI Developer" data-he="מפתח תוכנה ו-AI">Software & AI Developer</span>
                     </h1>
 
                     <div class="contact-info-home">
@@ -980,8 +1005,7 @@
                                 <span class="cv-text" data-en="CV" data-he="קורות חיים">CV</span>
                             </button>
                             <div class="cv-dropdown-content" id="cvDropdown">
-                                <a href="logos/Matar Roll CV.pdf" target="_blank" data-en="English" data-he="אנגלית">English</a>
-                                <a href="logos/מטר רול קוח.pdf" target="_blank" data-en="Hebrew" data-he="עברית">Hebrew</a>
+                                <a href="logos/Matar Roll CV - Hebrew.pdf" target="_blank" data-en="Hebrew" data-he="עברית">Hebrew</a>
                             </div>
                         </div>
                     </div>
@@ -999,43 +1023,9 @@
         <div class="content-section" id="about-section">
             <div class="section-content">
                 <h2 data-en="About Me" data-he="אודותיי">About Me</h2>
-                <p data-en="I am an experienced math teacher who decided to switch occupation to QA engineering. I've got a keen eye for details, a passion for testing, and I find great enjoyment in finding bugs and errors and seeing them fixed." data-he="אני מורה מתמטיקה מנוסה שהחליט לעבור לתחום הנדסת QA. יש לי עין חדה לפרטים, תשוקה לבדיקות, ואני נהנה מאוד למצוא באגים ושגיאות ולראות אותם מתוקנים.">I am an experienced math teacher who decided to switch occupation to QA engineering. I've got a keen eye for details, a passion for testing, and I find great enjoyment in finding bugs and errors and seeing them fixed.</p>
-                <p data-en="My background in mathematics has given me strong analytical and problem-solving skills, which translate perfectly to software testing. I approach each testing scenario methodically, ensuring comprehensive coverage and thorough documentation." data-he="הרקע שלי במתמטיקה נתן לי כישורי ניתוח ופתרון בעיות חזקים, שמתרגמים בצורה מושלמת לבדיקת תוכנה. אני ניגש לכל תרחיש בדיקה בצורה שיטתית, מבטיח כיסוי מקיף ותיעוד יסודי.">My background in mathematics has given me strong analytical and problem-solving skills, which translate perfectly to software testing. I approach each testing scenario methodically, ensuring comprehensive coverage and thorough documentation.</p>
-                <p data-en="My hobbies include PC and tabletop gaming, table tennis, hiking and spending time with my friends and family. These activities help me stay creative and maintain a healthy work-life balance." data-he="התחביבים שלי כוללים משחקי מחשב ומשחקי קופסא, טניס שולחן, טיולים ובילוי עם החברים והמשפחה שלי. הפעילויות האלה עוזרות לי להישאר יצירתי ולשמור על איזון בריא בין עבודה לחיים.">My hobbies include PC and tabletop gaming, table tennis, hiking and spending time with my friends and family. These activities help me stay creative and maintain a healthy work-life balance.</p>
-            </div>
-        </div>
-
-        <!-- Skills Section -->
-        <div class="content-section" id="skills-section">
-            <div class="section-content">
-                <h2 data-en="Key Skills" data-he="כישורים מרכזיים">Key Skills</h2>
-                <p data-en="I combine analytical thinking with modern testing tools and methodologies to ensure software quality." data-he="אני משלב חשיבה אנליטית עם כלי בדיקה ומתודולוגיות מודרניות כדי להבטיח איכות תוכנה.">I combine analytical thinking with modern testing tools and methodologies to ensure software quality.</p>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <h3 data-en="API Testing" data-he="בדיקת API">API Testing</h3>
-                        <p data-en="Proficient in Postman for API testing, validation, and automation. Experienced in testing REST APIs and verifying data integrity." data-he="מיומן ב-Postman לבדיקת API, אימות ואוטומציה. מנוסה בבדיקת REST APIs ואימות שלמות נתונים.">Proficient in Postman for API testing, validation, and automation. Experienced in testing REST APIs and verifying data integrity.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 data-en="Test Management" data-he="ניהול בדיקות">Test Management</h3>
-                        <p data-en="Expert in Jira and Xray for test case management, bug tracking, and project coordination. Skilled in creating comprehensive test documentation." data-he="מומחה ב-Jira ו-Xray לניהול מקרי בדיקה, מעקב באגים ותיאום פרויקטים. מיומן ביצירת תיעוד בדיקות מקיף.">Expert in Jira and Xray for test case management, bug tracking, and project coordination. Skilled in creating comprehensive test documentation.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 data-en="Programming" data-he="תכנות">Programming</h3>
-                        <p data-en="Knowledgeable in Python and C programming languages, with experience in automated testing scripts and test data generation." data-he="בעל ידע בשפות תכנות Python ו-C, עם ניסיון בסקריפטים לבדיקות אוטומטיות ויצירת נתוני בדיקה.">Knowledgeable in Python and C programming languages, with experience in automated testing scripts and test data generation.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 data-en="Testing Methodologies" data-he="מתודולוגיות בדיקה">Testing Methodologies</h3>
-                        <p data-en="Experienced in Agile and Scrum methodologies, with expertise in various testing types including Smoke, Sanity, Boundary, and Negative testing." data-he="מנוסה במתודולוגיות Agile ו-Scrum, עם מומחיות בסוגי בדיקה שונים כולל Smoke, Sanity, Boundary ו-Negative.">Experienced in Agile and Scrum methodologies, with expertise in various testing types including Smoke, Sanity, Boundary, and Negative testing.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 data-en="Database & SQL" data-he="מסדי נתונים ו-SQL">Database & SQL</h3>
-                        <p data-en="Proficient in SQL for database testing, data validation, and backend verification. Can write complex queries for test data setup and validation." data-he="מיומן ב-SQL לבדיקת מסדי נתונים, אימות נתונים ואימות backend. יכול לכתוב שאילתות מורכבות להכנת ואימות נתוני בדיקה.">Proficient in SQL for database testing, data validation, and backend verification. Can write complex queries for test data setup and validation.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 data-en="Load Testing" data-he="בדיקות עומס">Load Testing</h3>
-                        <p data-en="Experience in performance and load testing to ensure applications can handle expected user loads and identify bottlenecks." data-he="ניסיון בבדיקות ביצועים ועומס כדי להבטיח שאפליקציות יכולות להתמודד עם עומסי משתמשים צפויים ולזהות צווארי בקבוק.">Experience in performance and load testing to ensure applications can handle expected user loads and identify bottlenecks.</p>
-                    </div>
-                </div>
+                <p data-en="I'm a Software & AI Developer at Algomedia, where I build and run a real-time chat platform used by more than 1.6 million people every month. I design AI chatbots on the Claude API, tune backend performance, and take features from spec to production." data-he="אני מפתח תוכנה ו-AI ב-Algomedia, שם אני מפתח ומתחזק פלטפורמת צ'אט בזמן אמת עם יותר מ-1.6 מיליון משתמשים בחודש. אני מאפיין ומפתח בוטי AI מבוססי Claude API, משפר ביצועים בצד השרת, ולוקח פיצ'רים מהאפיון ועד האתר החי.">I'm a Software & AI Developer at Algomedia, where I build and run a real-time chat platform used by more than 1.6 million people every month. I design AI chatbots on the Claude API, tune backend performance, and take features from spec to production.</p>
+                <p data-en="I started out in QA, and it still shapes how I build: I think about edge cases, debugging and reliability from the first line of code. Years of tutoring math and chemistry taught me to break complex problems into clear steps and to explain them simply." data-he="התחלתי את הדרך ב-QA, וזה עדיין משפיע על איך שאני בונה: אני חושב על מקרי קצה, דיבוג ואמינות כבר מהשורה הראשונה של הקוד. שנים של הוראה פרטית במתמטיקה ובכימיה לימדו אותי לפרק בעיות מורכבות לשלבים ברורים ולהסביר אותן בפשטות.">I started out in QA, and it still shapes how I build: I think about edge cases, debugging and reliability from the first line of code. Years of tutoring math and chemistry taught me to break complex problems into clear steps and to explain them simply.</p>
+                <p data-en="I use AI coding tools every day (Claude Code, Gemini, Codex) and pick up new tech fast. Outside of work I enjoy time with family and friends, hiking with my dog, table tennis and board games." data-he="אני עובד כל יום עם כלי AI לפיתוח (Claude Code, Gemini, Codex) ולומד טכנולוגיות חדשות מהר. מחוץ לעבודה אני אוהב לבלות עם משפחה וחברים, לטייל בטבע עם הכלב שלי, טניס שולחן ומשחקי קופסה.">I use AI coding tools every day (Claude Code, Gemini, Codex) and pick up new tech fast. Outside of work I enjoy time with family and friends, hiking with my dog, table tennis and board games.</p>
             </div>
         </div>
 
@@ -1047,30 +1037,33 @@
                     <div class="experience-card">
                         <div class="experience-header">
                             <div class="experience-title">
-                                <h3 data-en="Math Teacher" data-he="מורה מתמטיקה">Math Teacher</h3>
-                                <div class="company" data-en="Brener Middle School, Petah Tikva" data-he="חטיבת הביניים ברנר, פתח תקווה">Brener Middle School, Petah Tikva</div>
+                                <h3 data-en="Software & AI Developer" data-he="מפתח תוכנה ו-AI">Software & AI Developer</h3>
+                                <div class="company" data-en="Algomedia · Real-time chat platform, 1.6M+ monthly users" data-he="Algomedia · פלטפורמת צ'אט בזמן אמת, מעל 1.6 מיליון משתמשים בחודש">Algomedia · Real-time chat platform, 1.6M+ monthly users</div>
                             </div>
-                            <div class="experience-date" data-en="2021 - 2025" data-he="2025 - 2021">2021 - 2025</div>
+                            <div class="experience-date" data-en="2024 - Present" data-he="2024 - היום">2024 - Present</div>
                         </div>
                         <ul>
-                            <li data-en="Teaching over 200 students in grades 7th-9th" data-he="הוראה ללמעלה מ-200 תלמידים בכיתות ז'-ט'">Teaching over 200 students in grades 7th-9th</li>
-                            <li data-en="Improved student scores by 20%" data-he="שיפור ציונים ב-20%">Improved student scores by 20%</li>
-                            <li data-en="Earned strong parent and student trust" data-he="זכיתי באמון חזק של הורים ותלמידים">Earned strong parent and student trust</li>
+                            <li data-en="AI chatbots: designed and built celebrity bots on the Claude API, connected them to the live chat, and refined their prompts so they answer naturally and stay in character" data-he="בוטים מבוססי AI: אפיון ופיתוח בוטי סלבריטאים מבוססי Claude API, חיבורם לצ'אט החי, וליטוש ה-Prompts כך שיענו בטבעיות וישמרו על אופי הדמות">AI chatbots: designed and built celebrity bots on the Claude API, connected them to the live chat, and refined their prompts so they answer naturally and stay in character</li>
+                            <li data-en="Performance: when peak CPU on Google Cloud hit 96%, built a Redis caching and queue layer that brought it down to a steady 40%" data-he="שיפור ביצועים: כשה-CPU בשרת (Google Cloud) הגיע ל-96% בשעות שיא, בניתי מנגנון Caching ותורים ב-Redis שהוריד אותו ל-40% באופן יציב">Performance: when peak CPU on Google Cloud hit 96%, built a Redis caching and queue layer that brought it down to a steady 40%</li>
+                            <li data-en="Integrations: rescued and integrated a third-party video ad platform, the site's main revenue stream, under a tight deadline" data-he="אינטגרציות: הצלה ושילוב של מערכת פרסומות וידאו של צד שלישי, מקור ההכנסה המרכזי של האתר, תחת לחץ זמנים">Integrations: rescued and integrated a third-party video ad platform, the site's main revenue stream, under a tight deadline</li>
+                            <li data-en="DevOps: Linux servers over SSH, releases to production, CI/CD with Bitbucket Pipelines and GitHub Actions, separate dev environments" data-he="DevOps: עבודה על שרתי Linux דרך SSH, העלאת גרסאות לאתר החי, CI/CD עם Bitbucket Pipelines ו-GitHub Actions, וניהול סביבות פיתוח נפרדות">DevOps: Linux servers over SSH, releases to production, CI/CD with Bitbucket Pipelines and GitHub Actions, separate dev environments</li>
+                            <li data-en="Monitoring and debugging: early detection of failures from Kibana logs and traffic anomalies; isolated issues with Postman and DevTools" data-he="ניטור ופתרון תקלות: זיהוי מוקדם של נפילות לפי חריגות בלוגים ובתעבורה (Kibana), ובידוד תקלות בעזרת Postman ו-DevTools">Monitoring and debugging: early detection of failures from Kibana logs and traffic anomalies; isolated issues with Postman and DevTools</li>
+                            <li data-en="Quality: code reviews (PHP, JavaScript) before deploys, and Python + Selenium automation that simulates two users at once" data-he="איכות: Code Review (PHP, JavaScript) לפני כל העלאה, ואוטומציה ב-Python וב-Selenium המדמה שני משתמשים במקביל">Quality: code reviews (PHP, JavaScript) before deploys, and Python + Selenium automation that simulates two users at once</li>
+                            <li data-en="Product to code: worked closely with the product manager to turn requirements into technical solutions, and coordinated with a remote developer" data-he="חיבור בין מוצר לפיתוח: עבודה צמודה מול מנהל המוצר לתרגום דרישות לפתרון טכני, וסנכרון שוטף מול מפתח מרוחק">Product to code: worked closely with the product manager to turn requirements into technical solutions, and coordinated with a remote developer</li>
                         </ul>
                     </div>
 
                     <div class="experience-card">
                         <div class="experience-header">
                             <div class="experience-title">
-                                <h3 data-en="Senior Customer Service Agent" data-he="נציג שירות לקוחות בכיר">Senior Customer Service Agent</h3>
-                                <div class="company" data-en="AIG Insurance" data-he="ביטוח AIG">AIG Insurance</div>
+                                <h3 data-en="Private Tutor: Math & Chemistry" data-he="מורה פרטי: מתמטיקה וכימיה">Private Tutor: Math & Chemistry</h3>
+                                <div class="company" data-en="Self-employed" data-he="עצמאי">Self-employed</div>
                             </div>
-                            <div class="experience-date" data-en="2019 - 2021" data-he="2021 - 2019">2019 - 2021</div>
+                            <div class="experience-date" data-en="2020 - 2024" data-he="2024 - 2020">2020 - 2024</div>
                         </div>
                         <ul>
-                            <li data-en="Mentored 20+ new agents and handled up to 60 client calls daily" data-he="הדרכת למעלה מ-20 נציגים חדשים וטיפול ביותר מ-60 שיחות לקוחות יומיות">Mentored 20+ new agents and handled up to 60 client calls daily</li>
-                            <li data-en="Resolved customer issues with 95% satisfaction rate" data-he="פתרון בעיות לקוחות עם 95% שביעות רצון">Resolved customer issues with 95% satisfaction rate</li>
-                            <li data-en="Developed strong communication and problem-solving skills" data-he="פיתוח כישורי תקשורת ופתרון בעיות חזקים">Developed strong communication and problem-solving skills</li>
+                            <li data-en="Taught and mentored students at all levels, including 5-unit Bagrut preparation" data-he="הוראה וליווי תלמידים בכל הרמות, כולל הכנה לבגרות ברמת 5 יחידות">Taught and mentored students at all levels, including 5-unit Bagrut preparation</li>
+                            <li data-en="Broke complex problems down into clear, simple steps" data-he="פירוק בעיות מורכבות לשלבים ברורים ופשוטים">Broke complex problems down into clear, simple steps</li>
                         </ul>
                     </div>
 
@@ -1083,10 +1076,153 @@
                             <div class="experience-date" data-en="2017 - 2019" data-he="2019 - 2017">2017 - 2019</div>
                         </div>
                         <ul>
-                            <li data-en="Deployed advanced weapon systems in operational missions" data-he="הפעלת מערכות נשק מתקדמות במשימות מבצעיות">Deployed advanced weapon systems in operational missions</li>
-                            <li data-en="Maintained and fixed a varied range of technical errors and failures" data-he="תחזוקה ותיקון מגוון רחב של שגיאות וכשלים טכניים">Maintained and fixed a varied range of technical errors and failures</li>
-                            <li data-en="Worked with outside contractors like Elbit, Rafael, Elta" data-he="עבודה עם קבלנים חיצוניים כמו אלביט, רפאל, אלתא">Worked with outside contractors like Elbit, Rafael, Elta</li>
+                            <li data-en="Operated advanced weapon systems in operational missions" data-he="הפעלת מערכות נשק מתקדמות במשימות מבצעיות">Operated advanced weapon systems in operational missions</li>
+                            <li data-en="Diagnosed and fixed a wide range of technical faults" data-he="אבחון ותיקון מגוון רחב של תקלות טכניות">Diagnosed and fixed a wide range of technical faults</li>
+                            <li data-en="Worked with defense contractors such as Elbit, Rafael and Elta" data-he="עבודה מול קבלנים כמו אלביט, רפאל ואלתא">Worked with defense contractors such as Elbit, Rafael and Elta</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="content-section" id="projects-section">
+            <div class="section-content">
+                <h2 data-en="Projects" data-he="פרויקטים">Projects</h2>
+                <p data-en="Side projects I build to learn new stacks. Most are still works in progress." data-he="פרויקטים אישיים שאני בונה כדי ללמוד טכנולוגיות חדשות. רובם עדיין בפיתוח.">Side projects I build to learn new stacks. Most are still works in progress.</p>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-logo"><span class="project-emoji">🧠</span></div>
+                            <div class="project-info">
+                                <h3 data-en="Life Command Center" data-he="Life Command Center">Life Command Center</h3>
+                                <div class="project-type">React · TypeScript · Firebase · PWA</div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="wip-badge" data-en="🚧 In progress" data-he="🚧 בפיתוח">🚧 In progress</span>
+                            <ul>
+                                <li data-en="App for managing your life where tasks unlock by conditions (other tasks done, streaks, money saved), not by dates" data-he="אפליקציה לניהול החיים שבה משימות נפתחות לפי תנאים (משימות אחרות שהושלמו, רצפים, כסף שנחסך) ולא לפי תאריך">App for managing your life where tasks unlock by conditions (other tasks done, streaks, money saved), not by dates</li>
+                                <li data-en="Firestore real-time sync, Cloud Functions and push notifications" data-he="סנכרון בזמן אמת עם Firestore, Cloud Functions והתראות Push">Firestore real-time sync, Cloud Functions and push notifications</li>
+                                <li data-en="Installable on iPhone, dark mode, right-to-left Hebrew" data-he="ניתנת להתקנה באייפון, מצב כהה, תמיכה בעברית מימין לשמאל">Installable on iPhone, dark mode, right-to-left Hebrew</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://github.com/mataroll/Life-Command" target="_blank" class="project-link" data-en="View Code" data-he="לקוד">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-logo"><span class="project-emoji">📝</span></div>
+                            <div class="project-info">
+                                <h3 data-en="Digital Health Declaration" data-he="הצהרת בריאות דיגיטלית">Digital Health Declaration</h3>
+                                <div class="project-type">JavaScript · jsPDF · Node.js · Vercel</div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="wip-badge" data-en="🚧 In progress" data-he="🚧 בפיתוח">🚧 In progress</span>
+                            <ul>
+                                <li data-en="Digital form for an insurance agency, replacing paper forms" data-he="טופס דיגיטלי לסוכנות ביטוח שמחליף טפסי נייר">Digital form for an insurance agency, replacing paper forms</li>
+                                <li data-en="Client fills in the form and signs on their phone, then downloads a PDF copy" data-he="הלקוח ממלא וחותם בטלפון ומוריד עותק PDF">Client fills in the form and signs on their phone, then downloads a PDF copy</li>
+                                <li data-en="A serverless function emails the signed PDF to the agent automatically" data-he="פונקציית Serverless שולחת את ה-PDF החתום לסוכן במייל באופן אוטומטי">A serverless function emails the signed PDF to the agent automatically</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://sagi-insurance.vercel.app" target="_blank" class="project-link" data-en="Live Demo" data-he="לאתר החי">Live Demo</a>
+                                <a href="https://github.com/mataroll/Sagi-insurance" target="_blank" class="project-link" data-en="View Code" data-he="לקוד">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-logo"><span class="project-emoji">🚨</span></div>
+                            <div class="project-info">
+                                <h3 data-en="Real-Time Alerts Map" data-he="מפת התרעות בזמן אמת">Real-Time Alerts Map</h3>
+                                <div class="project-type">JavaScript · Leaflet · Vercel Functions</div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="wip-badge" data-en="🚧 In progress" data-he="🚧 בפיתוח">🚧 In progress</span>
+                            <ul>
+                                <li data-en="Live map of Home Front Command alerts, with history and filters" data-he="מפה חיה של התרעות פיקוד העורף, כולל היסטוריה וסינון">Live map of Home Front Command alerts, with history and filters</li>
+                                <li data-en="Serverless API proxy that gets around the official feed's CORS limits" data-he="Proxy בצד השרת (Serverless) שעוקף את מגבלות ה-CORS של הפיד הרשמי">Serverless API proxy that gets around the official feed's CORS limits</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://github.com/mataroll/alerts" target="_blank" class="project-link" data-en="View Code" data-he="לקוד">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-logo"><span class="project-emoji">🔢</span></div>
+                            <div class="project-info">
+                                <h3 data-en="Neural Network from Scratch" data-he="רשת נוירונים מאפס">Neural Network from Scratch</h3>
+                                <div class="project-type">C · Machine Learning</div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <ul>
+                                <li data-en="Neural network written in C with no external libraries" data-he="רשת נוירונים שנכתבה ב-C ללא ספריות חיצוניות">Neural network written in C with no external libraries</li>
+                                <li data-en="Recognizes handwritten digits and letters" data-he="מזהה ספרות ואותיות בכתב יד">Recognizes handwritten digits and letters</li>
+                                <li data-en="Built to understand how models really learn, from the ground up" data-he="נבנתה כדי להבין לעומק איך מודלים לומדים">Built to understand how models really learn, from the ground up</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-logo"><span class="project-emoji">🔗</span></div>
+                            <div class="project-info">
+                                <h3 data-en="ClearLinks Checker" data-he="ClearLinks Checker">ClearLinks Checker</h3>
+                                <div class="project-type">HTML · CSS · JavaScript</div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="wip-badge" data-en="🚧 In progress" data-he="🚧 בפיתוח">🚧 In progress</span>
+                            <ul>
+                                <li data-en="Paste a message and check whether it contains suspicious or phishing links" data-he="מדביקים הודעה ובודקים אם יש בה קישורים חשודים או פישינג">Paste a message and check whether it contains suspicious or phishing links</li>
+                                <li data-en="Runs entirely in the browser, so nothing you paste leaves your device" data-he="רץ כולו בדפדפן, כך ששום דבר לא יוצא מהמכשיר">Runs entirely in the browser, so nothing you paste leaves your device</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://github.com/mataroll/ClearLinks" target="_blank" class="project-link" data-en="View Code" data-he="לקוד">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="content-section" id="skills-section">
+            <div class="section-content">
+                <h2 data-en="Key Skills" data-he="כישורים מרכזיים">Key Skills</h2>
+                <p data-en="From AI integrations to production performance, with a tester's eye for detail." data-he="מאינטגרציות AI ועד ביצועים בפרודקשן, עם עין של בודק לפרטים.">From AI integrations to production performance, with a tester's eye for detail.</p>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3 data-en="AI & LLMs" data-he="AI ומודלי שפה">AI & LLMs</h3>
+                        <p data-en="Building chatbots on the Claude API, prompt engineering, and connecting LLMs to production systems. Daily work with Claude Code, Gemini and Codex." data-he="פיתוח בוטים מבוססי Claude API, Prompt Engineering ושילוב מודלי שפה במערכות חיות. עבודה יומיומית עם Claude Code, Gemini ו-Codex.">Building chatbots on the Claude API, prompt engineering, and connecting LLMs to production systems. Daily work with Claude Code, Gemini and Codex.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 data-en="Backend & APIs" data-he="צד שרת ו-API">Backend & APIs</h3>
+                        <p data-en="Python, PHP and Node.js. REST APIs, third-party integrations and serverless functions." data-he="Python, PHP ו-Node.js. ממשקי REST, אינטגרציות עם צד שלישי ופונקציות Serverless.">Python, PHP and Node.js. REST APIs, third-party integrations and serverless functions.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 data-en="Performance & Caching" data-he="ביצועים ו-Caching">Performance & Caching</h3>
+                        <p data-en="Redis caching and queues that cut peak CPU from 96% to 40% on a platform with 1.6M+ monthly users." data-he="מנגנוני Caching ותורים ב-Redis שהורידו את ה-CPU בשעות שיא מ-96% ל-40% בפלטפורמה עם מעל 1.6 מיליון משתמשים בחודש.">Redis caching and queues that cut peak CPU from 96% to 40% on a platform with 1.6M+ monthly users.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 data-en="Cloud & DevOps" data-he="ענן ו-DevOps">Cloud & DevOps</h3>
+                        <p data-en="Google Cloud, Linux over SSH, CI/CD with Bitbucket Pipelines and GitHub Actions, Firebase, Vercel, Kibana monitoring." data-he="Google Cloud, שרתי Linux דרך SSH, CI/CD עם Bitbucket Pipelines ו-GitHub Actions, Firebase, Vercel וניטור עם Kibana.">Google Cloud, Linux over SSH, CI/CD with Bitbucket Pipelines and GitHub Actions, Firebase, Vercel, Kibana monitoring.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 data-en="Frontend" data-he="צד לקוח">Frontend</h3>
+                        <p data-en="JavaScript, TypeScript and React. Responsive, right-to-left friendly interfaces." data-he="JavaScript, TypeScript ו-React. ממשקים רספונסיביים עם תמיכה מלאה בעברית (RTL).">JavaScript, TypeScript and React. Responsive, right-to-left friendly interfaces.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 data-en="Testing & Quality" data-he="בדיקות ואיכות">Testing & Quality</h3>
+                        <p data-en="QA background: test planning (STP/STD/STR), API testing with Postman, Python and Selenium automation, and code reviews." data-he="רקע ב-QA: תכנון בדיקות (STP/STD/STR), בדיקות API עם Postman, אוטומציה ב-Python וב-Selenium, ו-Code Review.">QA background: test planning (STP/STD/STR), API testing with Postman, Python and Selenium automation, and code reviews.</p>
                     </div>
                 </div>
             </div>
@@ -1096,32 +1232,24 @@
         <div class="content-section" id="tools-section">
             <div class="section-content">
                 <h2 data-en="Tools & Technologies" data-he="כלים וטכנולוגיות">Tools & Technologies</h2>
-                <p data-en="Here are the main tools and technologies I use in my QA work to ensure comprehensive testing and quality assurance." data-he="אלו הם הכלים והטכנולוגיות העיקריים שאני משתמש בהם בעבודת ה-QA שלי כדי להבטיח בדיקה מקיפה ואבטחת איכות.">Here are the main tools and technologies I use in my QA work to ensure comprehensive testing and quality assurance.</p>
+                <p data-en="The languages, platforms and tools I work with day to day." data-he="השפות, הפלטפורמות והכלים שאני עובד איתם ביום-יום.">The languages, platforms and tools I work with day to day.</p>
                 <div class="tools-grid">
-                    <div class="tool-placeholder">
-                        <img src="logos/jira.png" alt="Jira" title="Jira">
-                    </div>
-                    <div class="tool-placeholder">
-                        <img src="logos/xray.png" alt="Xray" title="Xray">
-                    </div>
-                    <div class="tool-placeholder">
-                        <img src="logos/postman.png" alt="Postman" title="Postman">
-                    </div>
-                    <div class="tool-placeholder">
-                        <img src="logos/selenium.png" alt="Selenium" title="Selenium">
-                    </div>
-                    <div class="tool-placeholder">
-                        <img src="logos/python.png" alt="Python" title="Python">
-                    </div>
-                    <div class="tool-placeholder">
-                        <img src="logos/C.png" alt="C Programming" title="C Programming">
-                    </div>
-                    <div class="tool-placeholder">
-                        <img src="logos/sql.png" alt="SQL" title="SQL">
-                    </div>
-                    <div class="tool-placeholder">
-                        <img src="logos/devtools.png" alt="DevTools" title="DevTools">
-                    </div>
+                    <div class="tool-placeholder"><img src="https://cdn.simpleicons.org/claude" alt="Claude" title="Claude API / Claude Code"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" title="PHP"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" title="React"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis" title="Redis"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" title="Google Cloud"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" title="Linux / SSH"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg" alt="Firebase" title="Firebase"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" alt="GitHub Actions" title="GitHub Actions"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git"></div>
+                    <div class="tool-placeholder"><img src="logos/postman.png" alt="Postman" title="Postman"></div>
+                    <div class="tool-placeholder"><img src="logos/selenium.png" alt="Selenium" title="Selenium"></div>
+                    <div class="tool-placeholder"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kibana/kibana-original.svg" alt="Kibana" title="Kibana"></div>
                 </div>
             </div>
         </div>
@@ -1134,18 +1262,18 @@
                     <div class="experience-card">
                         <div class="experience-header">
                             <div class="experience-title">
-                                <h3 data-en="QA Engineer Course" data-he="קורס בודקי תוכנה">QA Engineer Course</h3>
-                                <div class="company" data-en="HackerU - 315 Hours" data-he="האקריו - 315 שעות">HackerU - 315 Hours</div>
+                                <h3 data-en="CS50: Python and C Programming" data-he="קורס תכנות פייתון וסי (CS50)">CS50: Python and C Programming</h3>
+                                <div class="company" data-en="Harvard / edX - 300 Hours" data-he="Harvard / edX - 300 שעות">Harvard / edX - 300 Hours</div>
                             </div>
-                            <div class="experience-date">2025</div>
+                            <div class="experience-date">2024</div>
                         </div>
                     </div>
 
                     <div class="experience-card">
                         <div class="experience-header">
                             <div class="experience-title">
-                                <h3 data-en="CS50 Python and C Programming" data-he="קורס תכנות פייתון וסי">CS50 Python and C Programming</h3>
-                                <div class="company" data-en="EDX - 300 Hours" data-he="300 שעות">EDX - 300 Hours</div>
+                                <h3 data-en="QA Engineer Course" data-he="קורס בודקי תוכנה">QA Engineer Course</h3>
+                                <div class="company" data-en="HackerU - 315 Hours" data-he="האקריו - 315 שעות">HackerU - 315 Hours</div>
                             </div>
                             <div class="experience-date">2024</div>
                         </div>
@@ -1155,60 +1283,9 @@
                         <div class="experience-header">
                             <div class="experience-title">
                                 <h3 data-en="High School Diploma" data-he="תיכון בן צבי">High School Diploma</h3>
-                                <div class="company" data-en="BenZvi High School - High GPA, 5 units in Math and Computer Science" data-he="ממוצע גבוה, 5 יחידות במתמטיקה ומדעי המחשב">BenZvi High School - High GPA, 5 units in Math and Computer Science</div>
+                                <div class="company" data-en="Ben Zvi High School - High GPA, 5 units in Math and Computer Science" data-he="ממוצע גבוה, 5 יחידות במתמטיקה ומדעי המחשב">Ben Zvi High School - High GPA, 5 units in Math and Computer Science</div>
                             </div>
                             <div class="experience-date" data-en="2014 - 2017" data-he="2017 - 2014">2014 - 2017</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Projects Section -->
-        <div class="content-section" id="projects-section">
-            <div class="section-content">
-                <h2 data-en="Projects" data-he="פרויקטים">Projects</h2>
-                <p data-en="Here are some of my key testing projects that demonstrate my QA skills and methodologies." data-he="הנה כמה מפרויקטי הבדיקה המרכזיים שלי שמדגימים את כישורי ה-QA והמתודולוגיות שלי.">Here are some of my key testing projects that demonstrate my QA skills and methodologies.</p>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-logo">
-                                <img src="logos/facebook.png" alt="facebook" title="facebook">
-                            </div>
-                            <div class="project-info">
-                                <h3 data-en="Facebook Web Testing" data-he="בדיקת אתר פייסבוק">Facebook Web Testing</h3>
-                                <div class="project-type" data-en="Web Application Testing" data-he="בדיקת אפליקציית אינטרנט">Web Application Testing</div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <ul>
-                                <li data-en="Served as Scrum Master in a group project for testing facebook.com" data-he="כיהנתי כמנהל סקראם בפרויקט קבוצתי לבדיקת facebook.com">Served as Scrum Master in a group project for testing facebook.com</li>
-                                <li data-en="Created comprehensive STP, STD, and STR documentation" data-he="יצירת תיעוד מקיף של STP, STD ו-STR">Created comprehensive STP, STD, and STR documentation</li>
-                                <li data-en="Found and reported 12 bugs to Facebook development team" data-he="מצאנו ודיווחנו על 12 באגים לצוות הפיתוח של פייסבוק">Found and reported 12 bugs to Facebook development team</li>
-                                <li data-en="Used DevTools throughout testing for bug verification and recreation" data-he="השתמשנו ב-DevTools לאורך הבדיקה לאימות ויצירה מחדש של באגים">Used DevTools throughout testing for bug verification and recreation</li>
-                            </ul>
-                            <a href="https://drive.google.com/drive/folders/1Silo7yKihzk9UJ6XZspPcU7FNBxz6YDy" target="_blank" class="project-link" data-en="View Project" data-he="צפה בפרויקט">View Project</a>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-logo">
-                                <img src="logos/waze.png" alt="waze" title="waze">
-                            </div>
-                            <div class="project-info">
-                                <h3 data-en="Waze Mobile App Testing" data-he="בדיקת אפליקציית וויז">Waze Mobile App Testing</h3>
-                                <div class="project-type" data-en="Mobile Application Testing" data-he="בדיקת אפליקציה ניידת">Mobile Application Testing</div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <ul>
-                                <li data-en="Personal project testing Waze mobile app on iOS and Android" data-he="פרויקט אישי לבדיקת אפליקציית Waze ב-iOS ו-Android">Personal project testing Waze mobile app on iOS and Android</li>
-                                <li data-en="Created detailed STP, STD and STR documentation" data-he="יצירת תיעוד מפורט של STP, STD ו-STR">Created detailed STP, STD and STR documentation</li>
-                                <li data-en="Performed Smoke, Sanity, Interface, Boundary and Negative testing" data-he="ביצוע בדיקות Smoke, Sanity, Interface, Boundary ו-Negative">Performed Smoke, Sanity, Interface, Boundary and Negative testing</li>
-                                <li data-en="Identified and reported multiple bugs to development team" data-he="זיהוי ודיווח על מספר באגים לצוות הפיתוח">Identified and reported multiple bugs to development team</li>
-                            </ul>
-                            <a href="https://drive.google.com/drive/folders/1Silo7yKihzk9UJ6XZspPcU7FNBxz6YDy" target="_blank" class="project-link" data-en="View Project" data-he="צפה בפרויקט">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -1219,7 +1296,7 @@
         <div class="content-section" id="contact-section">
             <div class="section-content">
                 <h2 data-en="Get In Touch" data-he="צור קשר">Get In Touch</h2>
-                <p data-en="I'm always interested in new QA opportunities and exciting projects. Let's discuss how I can help ensure your software quality!" data-he="אני תמיד מעוניין בהזדמנויות QA חדשות ופרויקטים מרגשים. בואו נדבר על איך אני יכול לעזור להבטיח את איכות התוכנה שלכם!">I'm always interested in new QA opportunities and exciting projects. Let's discuss how I can help ensure your software quality!</p>
+                <p data-en="I'm looking for my next role as a Software, AI or DevOps developer. Let's talk!" data-he="אני מחפש את התפקיד הבא שלי כמפתח תוכנה, AI או DevOps. אשמח לדבר!">I'm looking for my next role as a Software, AI or DevOps developer. Let's talk!</p>
                 <div class="contact-info">
                     <div class="contact-card">
                         <h3 data-en="Email" data-he="אימייל">Email</h3>
@@ -1236,10 +1313,6 @@
                     <div class="contact-card">
                         <h3 data-en="GitHub" data-he="גיטהאב">GitHub</h3>
                         <p><a href="https://github.com/mataroll" target="_blank">github.com/mataroll</a></p>
-                    </div>
-                    <div class="contact-card">
-                        <h3 data-en="Website" data-he="אתר אינטרנט">Website</h3>
-                        <p><a href="https://mataroll.com" target="_blank">mataroll.com</a></p>
                     </div>
                 </div>
             </div>
